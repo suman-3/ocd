@@ -16,7 +16,7 @@ const ImageCard = ({ src, alt, name, title }) => {
         >
           {name}
         </p>
-        <p className="text-xl text-red-600">{title}</p>
+        <p className="text-xl text-red-600 inter">{title}</p>
       </div>
     </div>
   );
