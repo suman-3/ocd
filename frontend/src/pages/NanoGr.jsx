@@ -26,7 +26,7 @@ export default function NanoGr() {
     if (!isPaused) {
       const interval = setInterval(() => {
         handleNextSlide();
-      }, 3000); // Change slide every 3 seconds
+      }, 4000); // Change slide every 3 seconds
 
       return () => clearInterval(interval);
     }
@@ -52,123 +52,39 @@ export default function NanoGr() {
     }
   };
 
-  const containerStyle = {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "20px",
-    backgroundColor: "#000",
-    color: "#fff",
-    fontFamily: "Arial, sans-serif",
-    minHeight: "500px",
-  };
-
-  const leftStyle = {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    position: "relative",
-  };
-
-  const imageContainerStyle = {
-    position: "relative",
-    width: "100%",
-    maxWidth: "600px",
-    height: "350px",
-    overflow: "hidden",
-  };
-
-  const imageStyle = {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-    borderRadius: "8px",
-    cursor: "pointer",
-    transition: "opacity 0.3s ease-in-out",
-    opacity: fade ? 0 : 1,
-  };
-
-  const dotsContainerStyle = {
-    display: "flex",
-    justifyContent: "center",
-    marginTop: "10px",
-    gap: "8px",
-  };
-
-  const dotStyle = (isActive) => ({
-    width: "12px",
-    height: "12px",
-    borderRadius: "50%",
-    backgroundColor: isActive ? "red" : "white",
-    cursor: "pointer",
-  });
-
-  const rightStyle = {
-    flex: 1,
-    paddingLeft: "30px",
-  };
-
-  const headingStyle = {
-    fontFamily: "'Bebas Neue', sans-serif",
-    fontSize: "72px",
-    fontWeight: 400,
-    fontStyle: "normal",
-    lineHeight: "100%",
-    letterSpacing: "0%",
-    textTransform: "uppercase",
-    marginBottom: "16px",
-  };
-
-  const paragraphStyle = {
-    fontSize: "16px",
-    lineHeight: "1.5",
-    marginBottom: "24px",
-  };
-
-  const buttonStyle = {
-    backgroundColor: hover ? "#D97706" : "red",
-    color: "#fff",
-    padding: "12px 24px",
-    border: "none",
-    borderRadius: "8px",
-    fontSize: "16px",
-    cursor: "pointer",
-    width: "250px",
-    textAlign: "center",
-    fontWeight: "520",
-    boxShadow: hover ? "0 0 15px #D97706" : "none",
-    transition: "all 0.3s ease",
-  };
-
   return (
-    <div style={containerStyle}>
+    <div className="flex flex-col lg:flex-row items-center justify-center px-10 bg-black text-white font-sans min-h-[500px] 2xl:max-w-screen-2xl mx-auto 2xl:my-6 gap-10">
       {/* Left Side - Image Carousel */}
-      <div 
-        style={leftStyle}
-        onMouseEnter={() => setIsPaused(true)}  // Pause auto-slide on hover
+      <div
+        className="flex-1 flex flex-col items-center justify-center relative mb-8 lg:mb-0"
+        onMouseEnter={() => setIsPaused(true)} // Pause auto-slide on hover
         onMouseLeave={() => setIsPaused(false)} // Resume auto-slide when not hovering
       >
-        <div style={imageContainerStyle}>
+        <div className="relative w-full max-w-[600px] h-[350px] overflow-hidden">
           <a
             href={images[currentIndex].link}
             target="_blank"
             rel="noopener noreferrer"
+            className="block w-full h-full"
           >
             <img
-              style={imageStyle}
+              className={`w-full h-full object-cover rounded-lg cursor-pointer transition-opacity duration-300 ease-in-out ${
+                fade ? 'opacity-0' : 'opacity-100'
+              }`}
               src={images[currentIndex].src}
               alt={images[currentIndex].title}
             />
           </a>
         </div>
-        <div style={dotsContainerStyle}>
+        
+        {/* Dots Container */}
+        <div className="flex justify-center mt-2.5 gap-2">
           {images.map((_, index) => (
             <div
               key={index}
-              style={dotStyle(currentIndex === index)}
+              className={`w-3 h-3 rounded-full cursor-pointer transition-colors duration-200 ${
+                currentIndex === index ? 'bg-red-500' : 'bg-white'
+              }`}
               onClick={() => handleDotClick(index)}
             ></div>
           ))}
@@ -176,23 +92,38 @@ export default function NanoGr() {
       </div>
 
       {/* Right Side - Text & Button */}
-      <div style={rightStyle}>
-        <h1 style={headingStyle}>ARTDESHINE NANO GRAPHENE +</h1>
-        <p style={paragraphStyle} className="inter">
+      <div className="flex-1 lg:pl-8 text-center lg:text-left">
+        <h1 
+          className="font-bebas text-4xl sm:text-5xl font-normal leading-tight lg:leading-none tracking-normal uppercase mb-6"
+          style={{ 
+            fontFamily: "'Bebas Neue', sans-serif",
+            lineHeight: "100%"
+          }}
+        >
+          ARTDESHINE NANO GRAPHENE +
+        </h1>
+        
+        <p className="text-base leading-relaxed mb-8 inter max-w-prose">
           NGC+ (Nano Graphene Coating) is the most advanced protective coating
-          yet. <br /> Built for extreme durability, faster curing, and a deeper,
-          glossier finish. <br /> Its enhanced hydrophobic and self-cleaning
+          yet. <br className="hidden lg:block" /> 
+          Built for extreme durability, faster curing, and a deeper,
+          glossier finish. <br className="hidden lg:block" /> 
+          Its enhanced hydrophobic and self-cleaning
           properties mean your car stays cleaner for longer, with less effort.
-          <br /> <br /> Designed to resist the harshest elements, NGC+ not only protects
-          your paint, but
-          it also elevates its look and feel. For those who demand the best,
-          nothing <br />else comes close.
+          <br /><br /> 
+          Designed to resist the harshest elements, NGC+ not only protects
+          your paint, but it also elevates its look and feel. For those who demand the best,
+          nothing <br className="hidden lg:block" />else comes close.
         </p>
+        
         <button
-          style={buttonStyle}
+          className={`inter py-3 px-6 border-none rounded-lg text-base cursor-pointer w-full sm:w-[250px] text-center font-medium transition-all duration-300 ease-in-out ${
+            hover 
+              ? 'bg-amber-600 shadow-[0_0_15px_#D97706]' 
+              : 'bg-red-500 hover:bg-red-600'
+          }`}
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
-          className="inter"
         >
           View More
         </button>

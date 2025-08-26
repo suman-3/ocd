@@ -66,17 +66,17 @@ export default function ContactSection() {
   // Handle input changes
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    
-    setFormData(prev => ({
+
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
 
     // Clear error for this field when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: ""
+        [name]: "",
       }));
     }
   };
@@ -88,7 +88,7 @@ export default function ContactSection() {
 
     // Validate form
     const validationErrors = validateForm();
-    
+
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       setIsSubmitting(false);
@@ -104,16 +104,16 @@ export default function ContactSection() {
       email: formData.email.trim(),
       message: formData.message.trim(),
       privacyAgreed: formData.privacyAgreed,
-      submittedAt: new Date().toISOString()
+      submittedAt: new Date().toISOString(),
     });
 
     // Simulate form submission (replace with actual API call)
     try {
       // Here you would typically make an API call to submit the form
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API delay
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API delay
+
       alert("Thank you! Your message has been sent successfully.");
-      
+
       // Reset form after successful submission
       setFormData({
         name: "",
@@ -123,7 +123,9 @@ export default function ContactSection() {
       });
     } catch (error) {
       console.error("Form submission error:", error);
-      alert("Sorry, there was an error sending your message. Please try again.");
+      alert(
+        "Sorry, there was an error sending your message. Please try again."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -151,7 +153,7 @@ export default function ContactSection() {
                   value={formData.name}
                   onChange={handleInputChange}
                   className={`pl-8 w-full border-b py-3 placeholder-gray-400 focus:outline-none ${
-                    errors.name ? 'border-red-500' : 'border-gray-300'
+                    errors.name ? "border-red-500" : "border-gray-300"
                   }`}
                 />
                 {errors.name && (
@@ -171,7 +173,7 @@ export default function ContactSection() {
                   value={formData.email}
                   onChange={handleInputChange}
                   className={`pl-8 w-full border-b py-3 placeholder-gray-400 focus:outline-none ${
-                    errors.email ? 'border-red-500' : 'border-gray-300'
+                    errors.email ? "border-red-500" : "border-gray-300"
                   }`}
                 />
                 {errors.email && (
@@ -191,7 +193,7 @@ export default function ContactSection() {
                   value={formData.message}
                   onChange={handleInputChange}
                   className={`pl-8 w-full border-b py-3 placeholder-gray-400 focus:outline-none resize-none ${
-                    errors.message ? 'border-red-500' : 'border-gray-300'
+                    errors.message ? "border-red-500" : "border-gray-300"
                   }`}
                 />
                 {errors.message && (
@@ -231,12 +233,12 @@ export default function ContactSection() {
                   disabled={isSubmitting}
                   className={`mt-4 py-3 px-8 font-bold w-48 flex items-center justify-center gap-3 text-white ${
                     isSubmitting
-                      ? 'bg-gray-400 cursor-not-allowed'
-                      : 'bg-custom-red hover:bg-red-700'
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-custom-red hover:bg-red-700"
                   }`}
                 >
                   <FaPaperPlane />
-                  {isSubmitting ? 'Sending...' : 'Get In Touch'}
+                  {isSubmitting ? "Sending..." : "Get In Touch"}
                 </button>
               </div>
             </form>
@@ -278,8 +280,7 @@ export default function ContactSection() {
                 {/* Mumbai */}
                 <div>
                   <p className="flex items-center gap-2 font-semibold text-gray-900 inter">
-                    <FaMapMarkerAlt className="text-custom-red" />
-                    Mumbai
+                    📌 Mumbai
                   </p>
                   <p className="text-sm text-gray-600 inter">
                     1121, Shramik Society, Adarsh Nagar, Jogeshwari West,
@@ -290,8 +291,7 @@ export default function ContactSection() {
                 {/* Gurgaon */}
                 <div>
                   <p className="flex items-center gap-2 font-semibold text-gray-900 inter">
-                    <FaMapMarkerAlt className="text-custom-red" />
-                    Gurgaon
+                    📌 Gurgaon
                   </p>
                   <p className="text-sm text-gray-600 inter">
                     Main CRPF Camp Road, Sector 61, Village Ullahavas, Opp. IOC
@@ -302,8 +302,7 @@ export default function ContactSection() {
                 {/* Thane */}
                 <div>
                   <p className="flex items-center gap-2 font-semibold text-gray-900 inter">
-                    <FaMapMarkerAlt className="text-custom-red" />
-                    Thane
+                    📌 Thane
                   </p>
                   <p className="text-sm text-gray-600 inter">
                     Kothari Compound, Neelkanth Grns Rd, Opp. Baccha Party,
@@ -315,14 +314,20 @@ export default function ContactSection() {
 
             {/* Email & Phone */}
             <div className="mt-6 text-gray-800">
-              <p 
-              onClick={() => window.location.href = "mailto:hello@ocddetailstudio.com"}
-              className="underline decoration-gray-300 decoration-2 mb-2 inline-block cursor-pointer">
+              <p
+                onClick={() =>
+                  (window.location.href = "mailto:hello@ocddetailstudio.com")
+                }
+                className="underline decoration-gray-300 decoration-2 mb-2 inline-block cursor-pointer"
+              >
                 hello@ocddetailstudio.com
               </p>
-              <p 
-              onClick={() => window.location.href = "tel:+919818122723"}
-              className="mb-3 cursor-pointer">+91-9818122723</p>
+              <p
+                onClick={() => (window.location.href = "tel:+919818122723")}
+                className="mb-3 cursor-pointer"
+              >
+                +91-9818122723
+              </p>
             </div>
 
             {/* Social Icons (outlined squares) */}

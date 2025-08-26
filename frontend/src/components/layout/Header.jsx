@@ -20,7 +20,7 @@ const Header = () => {
   const isHomePage = location.pathname === "/";
 
   const headerClasses = isHomePage
-    ? "absolute top-0 left-0 right-0 z-50 text-white h-20 px-6 flex items-center justify-between bg-transparent"
+    ? "absolute top-0 left-0 right-0 z-50 text-white h-20 px-6 2xl:px-14 flex items-center justify-between bg-transparent"
     : "bg-black text-white py-8 px-4 flex items-center justify-between border-b border-gray-700";
 
   return (

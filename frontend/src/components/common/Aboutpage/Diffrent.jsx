@@ -35,7 +35,7 @@ import set4 from '../../../assets/componets-bg/set4.png'
 
 const Diffrent = () => {
   return (
-    <section className="bg-[#F4F4F4] w-full">
+    <section className="bg-[#F4F4F4] w-full 2xl:pt-6">
       <div className="flex flex-col items-center justify-center text-center py-16 gap-4">
         <h2 className="text-2xl font-semibold text-black font-bebas">WHAT sets us apart</h2>
         <h1 className="text-6xl font-medium text-black font-bebas mt-1">what makes ocd <span className="text-custom-red">different</span></h1>

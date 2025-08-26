@@ -7,12 +7,12 @@ import quoteIcon from "../assets/icon/quoate.png";
 
 const MoreCustomersSay = () => {
   return (
-    <div className="bg-black text-white px-7 font-arial">
+    <div className="bg-black text-white px-7 2xl:px-0 font-arial 2xl:max-w-screen-2xl mx-auto">
       <h2 className="text-left font-['Bebas_Neue'] text-6xl font-normal mb-8 mt-8 pl-4 leading-tight">
         MORE CUSTOMERS SAY
       </h2>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-8 justify-center px-4 items-stretch max-w-[1240px] mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-5 lg:gap-8 2xl:gap-10 justify-center px-4 items-stretch mx-auto">
         {/* Card 1 */}
         <div className="bg-white text-black rounded-sm p-5 shadow-lg flex flex-col h-full max-w-[600px] mx-auto lg:mx-0">
           <div className="w-full flex items-center justify-between">
@@ -29,7 +29,7 @@ const MoreCustomersSay = () => {
             </div>
             <img src={quoteIcon} alt="ICON" className="size-10 shrink-0 mt-4" />
           </div>
-          <p className="font-['Inter'] font-normal text-sm leading-6 text-justify text-gray-500 flex-1">
+          <p className="inter font-normal text-sm leading-6 text-justify text-gray-500 flex-1">
             I got to know about OCD through Ducati owners group, I spoke to
             Saurabh before office timings and I was pleasantly surprised as he
             was available to talk and explained everything. He went over and
@@ -72,7 +72,7 @@ const MoreCustomersSay = () => {
             </div>
             <img src={quoteIcon} alt="ICON" className="size-10 shrink-0 mt-4" />
           </div>
-          <p className="font-['Inter'] font-normal text-sm leading-6 text-justify text-gray-500 flex-1">
+          <p className="inter font-normal text-sm leading-6 text-justify text-gray-500 flex-1">
             I had contacted Saurabh in May 2022 after getting a Versys 1000 for
             its detailing.
             <br />
@@ -119,7 +119,7 @@ const MoreCustomersSay = () => {
             </div>
             <img src={quoteIcon} alt="ICON" className="size-10 shrink-0 mt-4" />
           </div>
-          <p className="font-['Inter'] font-normal text-sm leading-6 text-justify text-gray-500 flex-1">
+          <p className="inter font-normal text-sm leading-6 text-justify text-gray-500 flex-1">
             I recently got Nano Graphene coating done on my Triumph Scrambler
             400X from OCD details studio and the entire experience from dropping
             off the bike to collecting it was just phenomenal!
@@ -161,7 +161,7 @@ const MoreCustomersSay = () => {
 
             <img src={quoteIcon} alt="ICON" className="size-10 shrink-0 mt-4" />
           </div>
-          <p className="font-['Inter'] font-normal text-sm leading-6 text-justify text-gray-500 flex-1">
+          <p className="inter font-normal text-sm leading-6 text-justify text-gray-500 flex-1">
             Great attention to detail, quite literally! I had my new car's paint
             detailed and protected with a ceramic coat almost 1.5 years ago and
             followed the coating checkup/maintenance visits recommended every 6

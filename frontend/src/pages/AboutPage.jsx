@@ -39,9 +39,11 @@ const AboutPage = () => {
   ]
   
   return (
-          <div>
+          <div cl>
            <Hero/>
-           <Ethos/>
+         <section className="w-full bg-[#F4F4F4]">
+            <Ethos/>
+         </section>
             <Diffrent/>
             <WhatWeDo/>
             <AboutTheBrand />

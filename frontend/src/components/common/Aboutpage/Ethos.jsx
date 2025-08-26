@@ -3,7 +3,7 @@ import ShopFront from "../../../assets/componets-bg/ShopFront.jpg";
 
 const Ethos = () => {
   return (
-    <section className="text-app-black bg-[#F4F4F4] px-10 pt-14 w-full flex gap-10">
+    <section className="text-app-black bg-[#F4F4F4] px-10 pt-14 w-full flex gap-10 2xl:max-w-screen-2xl mx-auto">
       {/* Section Title */}
 
       {/* Left side: Text */}
@@ -59,11 +59,10 @@ const Ethos = () => {
         {/* Final Line */}
         <p
           style={{
-            fontFamily: "'Inter', cursive",
-            fontSize: "16px",
             fontWeight: 100,
             textTransform: "capitalize", // Capitalize each word
           }}
+          className="inter font-medium text-lg 2xl:text-xl"
         >
           We’re Not Just A Detailing Studio.{" "}
           <span className="text-custom-red font-semibold">
@@ -77,7 +76,7 @@ const Ethos = () => {
         <img
           src={ShopFront}
           alt="Shop Front"
-          className="w-[95%] h-full object-cover rounded-md shadow-lg"
+          className="w-[95%] 2xl:w-full h-full object-cover rounded-md shadow-lg"
         />
       </div>
     </section>

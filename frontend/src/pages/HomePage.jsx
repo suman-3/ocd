@@ -113,14 +113,14 @@ const HomePage = () => {
           </div>
 
           <div>
-            <h1 className="font-bebas text-7xl font-extralight text-center mt-2 ">
+            <h1 className="font-bebas text-7xl 2xl:text-8xl font-extralight text-center mt-2 ">
               Obsessively Detailed. <br /> Driven by perfection.
             </h1>
           </div>
 
           <div>
             <p
-              className="font-medium text-lg text-center mt-4 xl:mt-3 inter"
+              className="font-medium text-lg 2xl:text-xl text-center mt-4 xl:mt-3 inter"
               style={{ color: "#FFFFFF" }}
             >
               Premium PPF, ceramic and graphene coatings for your ride. Handled
@@ -159,27 +159,27 @@ const HomePage = () => {
         <ServicesSection columns={4} cardHeight="28rem" cardWidth="420px" />
       </section>
 
-      <section className="text-white px-4 py-16">
-        <div className="flex items-center justify-around  gap-10 ">
-          <div className="flex flex-col gap-4 max-w-2xl h-[600px">
-            <h1 className="pt-28 text-app-white">
+      <section className="text-white pt-4 pb-6 2xl:py-10 2xl:pb-14 px-10 2xl:max-w-screen-2xl mx-auto">
+        <div className="flex items-center justify-between  gap-10 ">
+          <div className="flex flex-col gap-4 h-full">
+            <h1 className="pt-14 2xl:pt-20 text-app-white">
               <span className="text-7xl font-bebas">Premium Detailing</span>
               <br />
               <span className="text-custom-red text-5xl font-bebas">
                 For Cars & Bikes.
               </span>
             </h1>
-            <h1 className="text-2xl font-light pt-4 text-app-white mb-4 font-bebas">
+            <h1 className="text-2xl 2xl:text-3xl font-light pt-4 text-app-white mb-4 font-bebas">
               Every Surface. Every Curve. Every Inch. Perfected.
             </h1>
 
-            <p className="inter">
+            <p className="inter 2xl:text-lg">
               At OCD Detail Studio, detailing is an obsession. <br />
               Every vehicle that enters our studio gets a personalized <br />
               assessment and a bespoke care plan. No “standard packages.” No
               <br /> shortcuts.
               <br /> <br />
-              <p className="font-bold">
+              <p className="font-bold 2xl:text-lg">
                 Whether it’s a supercar, a luxury sedan, or a superbike
               </p>{" "}
               from your daily driver to your weekend warrior, we treat every
@@ -188,7 +188,7 @@ const HomePage = () => {
               <br />
               using top-tier products like Artdeshine & CarPro.
             </p>
-            <p>
+            <p className="2xl:text-lg inter">
               We specialize in
               <span className="font-bold">
                 {" "}
@@ -261,13 +261,13 @@ const HomePage = () => {
             <img
               src={OCD}
               alt="Bike"
-              className="absolute top-0 right-0 w-[420px] h-auto z-30 rounded-sm shadow-lg"
+              className="absolute top-0 2xl:-top-10 right-0 2xl:-right-6 w-[420px] 2xl:w-[500px] h-auto z-30 rounded-sm shadow-lg"
             />
 
             <img
               src={OCD1}
               alt="Car Wash"
-              className="absolute bottom-0 left-0 w-2/3 h-auto z-20 rounded-sm shadow-lg -translate-x-1/4"
+              className="absolute bottom-0 2xl:-bottom-24 left-0 2xl:-left-24 w-2/3 2xl:w-full h-auto z-20 rounded-sm shadow-lg -translate-x-1/4"
             />
           </div>
         </div>
@@ -279,7 +279,7 @@ const HomePage = () => {
         <CallToaction />
       </section>
 
-      <section id="testimonials" className="bg-gray-100 py-16">
+      <section id="testimonials" className="bg-white py-16">
         <Testimonials />
       </section>
 
@@ -292,7 +292,7 @@ const HomePage = () => {
           Why Car & Bike Owners{" "}
           <span className="text-red-600">Trust OCD Detail Studio</span>
         </h1>
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="max-w-7xl mx-auto px-8 2xl:mt-4">
           {/* First row - 4 items */}
           <div className="flex justify-center gap-8 mb-8">
             <div className="relative flex-1 max-w-xs">

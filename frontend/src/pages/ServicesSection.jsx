@@ -83,7 +83,7 @@ export default function ServicesSection({
   }
 
   return (
-    <section className="relative z-30 pt-16">
+    <section className="relative z-30 pt-16 px-4 2xl:px-10">
       <div className="text-center py-16 px-8">
         <h1 className="font-bebas text-6xl pt-28 text-app-white">
           Where Precision Isn't a Feature

@@ -5,11 +5,11 @@ import frontCar from '../../assets/componets-bg/CarFront.jpg'
 
 const CallToaction = () => {
   return (
-    <div className="w-full font-bebas text-white text-center "> 
+    <div className="w-full font-bebas text-white text-center"> 
       <div className="grid grid-cols-1 lg:grid-cols-2 h-auto min-h-[60vh] w-full ">
         {/* Left Side - Need Help Section */}
         <div 
-          className="relative flex flex-col justify-center items-center p-12 w-full bg-cover bg-center bg-no-repeat"
+          className="relative  flex flex-col justify-center items-center p-12 w-full bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${frontCar})` }}
         >
           {/* Background overlay */}

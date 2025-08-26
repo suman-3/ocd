@@ -3,8 +3,8 @@ import AboutImg from "../assets/componets-bg/AboutImg.jpg";
 
 const AboutTheBrand = () => {
   return (
-    <section className="bg-black text-white px-6 py-8 md:px-16 pb-14">
-      <div className="flex flex-col md:flex-row items-start">
+    <section className="bg-black text-white px-6 py-8 2xl:py-20 md:px-16 pb-14">
+      <div className="flex flex-col md:flex-row items-start 2xl:max-w-screen-2xl mx-auto">
         {/* Left Section */}
         <div className="md:w-3/5">
           {/* Heading */}
@@ -28,9 +28,9 @@ const AboutTheBrand = () => {
 
           {/* Subheading */}
           <p
-            className="mb-4"
+            className="mb-4 inter"
             style={{
-              fontFamily: "'Inter', cursive",
+
               fontSize: "24px",
               fontWeight: "500",
               textTransform: "none",
@@ -40,30 +40,30 @@ const AboutTheBrand = () => {
           </p>
 
           {/* Paragraphs */}
-          <p className="mb-4 inter" style={{ fontSize: "20px", fontWeight: "200" }}>
+          <p className="mb-4 inter" style={{ fontSize: "16px", fontWeight: "200" }}>
             They say that detailers are not made, they are born. <br />
             Detailing is a way of life. Getting into the minutest of details in
             the quest for perfection. Hence the name;
           </p>
-          <p className="mb-4 font-semibold inter" style={{ fontSize: "20px" }}>
+          <p className="mb-4 font-semibold inter" style={{ fontSize: "18px" }}>
             OCD Detail Studio. Introducing you to the world of perfection.
           </p>
-          <p className="mb-4 inter" style={{ fontSize: "20px", fontWeight: "300" }}>
+          <p className="mb-4 inter" style={{ fontSize: "16px", fontWeight: "300" }}>
             The studio is a labour of love incorporated by two brothers with a
             passion for detailing spanning 25 years, <br />
             both professionals, one a former Executive Chef at a Premier 5 star
             hotel and the other a Retired IAF Officer and a former Fighter
             Pilot.
           </p>
-          <p className="mb-4 inter" style={{ fontSize: "20px", fontWeight: "300" }}>
+          <p className="mb-4 inter" style={{ fontSize: "16px", fontWeight: "300" }}>
             We have tied up with some of the most exclusive brands to ensure
             your vehicle stays new for years.
           </p>
-          <p className="font-bold inter" style={{ fontSize: "20px" }}>
+          <p className="font-bold inter" style={{ fontSize: "18px" }}>
             OCD operates two owned stores at Mumbai and Gurgaon and one
             Franchise at Thane.
           </p>
-          <p className="inter mt-2" style={{ fontSize: "20px", fontWeight: "300" }}>
+          <p className="inter mt-2" style={{ fontSize: "16px", fontWeight: "300" }}>
             The expertise is in providing premium detailing services for all
             kinds of vehicles. We specialise in Paint Protection Film (PPF),
             Ceramic and Graphene coatings.
@@ -75,7 +75,7 @@ const AboutTheBrand = () => {
           <img
             src={AboutImg}
             alt="OCD Detail Studio Founders"
-            className="max-w-lg w-full h-auto object-cover object-top border-4 border-black absolute md:-top-8 md:right-0 md:translate-x-6 inter"
+            className="max-w-lg w-[90%] h-auto object-cover object-top border-4 border-black absolute md:-top-8 md:right-0 md:translate-x-6 inter"
           />
         </div>
       </div>
