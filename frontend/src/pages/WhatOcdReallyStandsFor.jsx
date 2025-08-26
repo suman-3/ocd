@@ -5,11 +5,11 @@ import WheelImage from "../assets/componets-bg/bi.jpg";
 const WhatOCDStandsFor = () => {
   return (
     <section className="w-full bg-white text-black">
-      <div className="flex flex-col md:flex-row min-h-screen">
+      <div className="flex flex-col md:flex-row min-h-screen 2xl:max-h-[94vh]">
         {/* LEFT HALF */}
         <div className="md:w-[65%] flex flex-col">
           {/* Top Text Section */}
-          <div className="flex-1 p-8 md:p-12">
+          <div className="flex-1 p-8 md:p-14 2xl:pl-48">
             <h2
               className="font-semibold tracking-wide font-bebas mb-0"
               style={{ fontSize: "72px" }}

@@ -133,7 +133,7 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="bg-gray-100 py-16">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-7xl 2xl:max-w-screen-2xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* LEFT: white card form */}
           <div className="bg-white p-10 shadow-sm max-w-[760px]">
@@ -152,7 +152,7 @@ export default function ContactSection() {
                   placeholder="Name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className={`pl-8 w-full border-b py-3 placeholder-gray-400 focus:outline-none ${
+                  className={`pl-8 w-full border-b inter py-3 placeholder-gray-400 focus:outline-none ${
                     errors.name ? "border-red-500" : "border-gray-300"
                   }`}
                 />
@@ -172,7 +172,7 @@ export default function ContactSection() {
                   placeholder="Email Address"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className={`pl-8 w-full border-b py-3 placeholder-gray-400 focus:outline-none ${
+                  className={`pl-8 w-full border-b inter py-3 placeholder-gray-400 focus:outline-none ${
                     errors.email ? "border-red-500" : "border-gray-300"
                   }`}
                 />
@@ -192,7 +192,7 @@ export default function ContactSection() {
                   rows="4"
                   value={formData.message}
                   onChange={handleInputChange}
-                  className={`pl-8 w-full border-b py-3 placeholder-gray-400 focus:outline-none resize-none ${
+                  className={`pl-8 w-full border-b inter py-3 placeholder-gray-400 focus:outline-none resize-none ${
                     errors.message ? "border-red-500" : "border-gray-300"
                   }`}
                 />
@@ -214,7 +214,7 @@ export default function ContactSection() {
                   className="mt-1"
                 />
                 <div className="flex flex-col">
-                  <label htmlFor="privacy" className="text-sm text-gray-600">
+                  <label htmlFor="privacy" className="text-sm text-gray-600 inter">
                     I agree that my data is collected and stored as per the
                     privacy policy.
                   </label>
@@ -231,7 +231,7 @@ export default function ContactSection() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`mt-4 py-3 px-8 font-bold w-48 flex items-center justify-center gap-3 text-white ${
+                  className={`mt-4 py-3 inter px-8 font-bold w-48 flex items-center justify-center gap-3 text-white ${
                     isSubmitting
                       ? "bg-gray-400 cursor-not-allowed"
                       : "bg-custom-red hover:bg-red-700"
@@ -279,10 +279,10 @@ export default function ContactSection() {
               <div className="space-y-5 text-gray-700">
                 {/* Mumbai */}
                 <div>
-                  <p className="flex items-center gap-2 font-semibold text-gray-900 inter">
+                  <p className="flex 2xl:text-lg items-center gap-2 font-semibold text-gray-900 inter">
                     📌 Mumbai
                   </p>
-                  <p className="text-sm text-gray-600 inter">
+                  <p className="text-sm 2xl:text-[17px] text-gray-600 inter">
                     1121, Shramik Society, Adarsh Nagar, Jogeshwari West,
                     Mumbai, Maharashtra 400102
                   </p>
@@ -290,10 +290,10 @@ export default function ContactSection() {
 
                 {/* Gurgaon */}
                 <div>
-                  <p className="flex items-center gap-2 font-semibold text-gray-900 inter">
+                  <p className="flex 2xl:text-lg items-center gap-2 font-semibold text-gray-900 inter">
                     📌 Gurgaon
                   </p>
-                  <p className="text-sm text-gray-600 inter">
+                  <p className="text-sm 2xl:text-[17px] text-gray-600 inter">
                     Main CRPF Camp Road, Sector 61, Village Ullahavas, Opp. IOC
                     Petrol Pump, Gurgaon, Haryana
                   </p>
@@ -301,10 +301,10 @@ export default function ContactSection() {
 
                 {/* Thane */}
                 <div>
-                  <p className="flex items-center gap-2 font-semibold text-gray-900 inter">
+                  <p className="flex  2xl:text-lg items-center gap-2 font-semibold text-gray-900 inter">
                     📌 Thane
                   </p>
-                  <p className="text-sm text-gray-600 inter">
+                  <p className="text-sm 2xl:text-[17px] text-gray-600 inter">
                     Kothari Compound, Neelkanth Grns Rd, Opp. Baccha Party,
                     Manpada, Thane West, Maharashtra 400607
                   </p>
@@ -318,13 +318,13 @@ export default function ContactSection() {
                 onClick={() =>
                   (window.location.href = "mailto:hello@ocddetailstudio.com")
                 }
-                className="underline decoration-gray-300 decoration-2 mb-2 inline-block cursor-pointer"
+                className="underline inter decoration-gray-300 decoration-2 mb-2 inline-block cursor-pointer"
               >
                 hello@ocddetailstudio.com
               </p>
               <p
                 onClick={() => (window.location.href = "tel:+919818122723")}
-                className="mb-3 cursor-pointer"
+                className="mb-3 cursor-pointer inter"
               >
                 +91-9818122723
               </p>

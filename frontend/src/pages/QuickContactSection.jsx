@@ -123,7 +123,7 @@ const QuickContactSection = () => {
 
   return (
     <section className="relative bg-black text-white w-full overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20 2xl:max-w-screen-2xl">
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold font-bebas tracking-wider uppercase">
             STILL THINKING ABOUT IT?{" "}
@@ -160,7 +160,7 @@ const QuickContactSection = () => {
                     placeholder="Name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className={`bg-transparent border-b outline-none py-2 w-full ${
+                    className={`bg-transparent inter border-b outline-none py-2 w-full ${
                       errors.name
                         ? "border-red-500"
                         : "border-gray-500 focus:border-white"
@@ -179,7 +179,7 @@ const QuickContactSection = () => {
                     placeholder="Last Name"
                     value={formData.lastName}
                     onChange={handleInputChange}
-                    className={`bg-transparent border-b outline-none py-2 w-full ${
+                    className={`bg-transparent border-b inter outline-none py-2 w-full ${
                       errors.lastName
                         ? "border-red-500"
                         : "border-gray-500 focus:border-white"
@@ -200,7 +200,7 @@ const QuickContactSection = () => {
                     placeholder="Email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className={`bg-transparent border-b outline-none py-2 w-full ${
+                    className={`bg-transparent border-b  inter selection:outline-none py-2 w-full ${
                       errors.email
                         ? "border-red-500"
                         : "border-gray-500 focus:border-white"
@@ -219,7 +219,7 @@ const QuickContactSection = () => {
                     placeholder="Phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className={`bg-transparent border-b outline-none py-2 w-full ${
+                    className={`bg-transparent border-b inter outline-none py-2 w-full ${
                       errors.phone
                         ? "border-red-500"
                         : "border-gray-500 focus:border-white"
@@ -239,14 +239,14 @@ const QuickContactSection = () => {
                   placeholder="Message (Optional)"
                   value={formData.message}
                   onChange={handleInputChange}
-                  className={`bg-transparent border-b outline-none py-2 w-full ${
+                  className={`bg-transparent border-b inter outline-none py-2 w-full ${
                     errors.message
                       ? "border-red-500"
                       : "border-gray-500 focus:border-white"
                   }`}
                 />
                 {errors.message && (
-                  <span className="text-red-400 text-sm mt-1 block">
+                  <span className="text-red-400 text-sm mt-1 block inter">
                     {errors.message}
                   </span>
                 )}
@@ -255,7 +255,7 @@ const QuickContactSection = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`flex items-center gap-2 px-6 py-3 font-semibold transition ${
+                className={`flex items-center inter gap-2 px-6 py-3 font-semibold transition ${
                   isSubmitting
                     ? "bg-gray-600 cursor-not-allowed shadow-none text-gray-300"
                     : "bg-custom-red text-white shadow-[0_0_20px_rgba(255,0,0,0.6)] hover:shadow-[0_0_30px_rgba(255,0,0,0.8)]"

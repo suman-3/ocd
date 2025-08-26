@@ -76,10 +76,10 @@ export default function Blogs() {
                 className="flex flex-col bg-[#1f1f1f] shadow-[0_8px_30px_rgba(0,0,0,0.6)]"
               >
                 <div className="px-6 py-6 bg-[#2a2a2a] min-h-[160px] flex flex-col justify-center">
-                  <h3 className="font-bebas uppercase text-lg md:text-xl leading-tight text-white">
+                  <h3 className="font-bebas uppercase text-lg md:text-xl leading-tight tracking-wide text-white">
                     {a.name}
                   </h3>
-                  <p className="text-sm text-gray-400 mt-3">
+                  <p className="text-sm text-gray-400 mt-3 inter">
                     {a.minute_read} min read •{" "}
                     {new Date(a.date).toLocaleDateString("en-US", {
                       year: "numeric",
@@ -98,7 +98,7 @@ export default function Blogs() {
                 <div className="px-6 py-6 bg-[#2a2a2a]">
                   <Link
                     to={`/blogs/${a.id}`}
-                    className="text-white font-semibold hover:text-custom-red transition-colors duration-200 inline-flex items-center gap-2"
+                    className="text-white inter font-semibold hover:text-custom-red transition-colors duration-200 inline-flex items-center gap-2"
                   >
                     <span>Read Article</span>
                     <span aria-hidden>→</span>
@@ -113,7 +113,7 @@ export default function Blogs() {
         <div className="flex justify-center mt-12">
           <Link
             to="/blogs"
-            className="bg-custom-red px-8 py-3 text-white font-bold shadow-[0_24px_60px_rgba(255,0,0,0.25)]"
+            className="bg-custom-red inter px-8 py-3 text-white font-bold shadow-[0_24px_60px_rgba(255,0,0,0.25)]"
           >
             Read All
           </Link>

@@ -5,7 +5,7 @@ const FloatingContactButtons = () => {
     <div className="fixed top-40 left-0 z-50 flex flex-col gap-1.5">
       {/* WhatsApp Button */}
       <a
-        href="https://wa.me/9198XXXXXXX"
+        href="https://wa.me/919818122723"
         target="_blank"
         rel="noopener noreferrer"
         className="bg-[#ff0000] p-3 shadow-lg hover:scale-105 transition"
@@ -15,7 +15,7 @@ const FloatingContactButtons = () => {
 
       {/* Call Button */}
       <a
-        href="tel:+9198XXXXXXX"
+        href="tel:+919818122723"
         className="bg-[#ffffff] p-3 shadow-lg hover:scale-105 transition"
       >
         <FaPhoneAlt size={26} color="#ff0000" />

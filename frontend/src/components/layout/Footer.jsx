@@ -5,17 +5,17 @@ const Footer = () => {
   return (
     <footer className="bg-app-gray text-app-white">
       {/* Main Footer Content */}
-      <div className="py-20 px-10 grid grid-cols-1 md:grid-cols-3 gap-16">
+      <div className="py-20 px-10 2xl:px-2 grid grid-cols-1 md:grid-cols-3 gap-16 2xl:max-w-screen-2xl mx-auto">
         
         {/* About Section */}
         <div className="flex flex-col gap-6 items-start">
           <h2 className="text-[20px] font-bold tracking-wider font-bebas uppercase">
             ABOUT OCD DETAIL STUDIO
           </h2>
-          <p className="text-[15px] font-thin leading-relaxed inter">
+          <p className="text-[15px] 2xl:text-[16px] font-thin leading-relaxed inter">
             We’re not just a detailing brand, We’re a community of Perfectionist.
           </p>
-          <p className="text-[15px] font-thin leading-relaxed inter">
+          <p className="text-[15px] 2xl:text-[16px] font-thin leading-relaxed inter">
             From ceramic coatings to PPF, from superbikes to supercars, we protect what you love to drive.
           </p>
 
@@ -40,24 +40,24 @@ const Footer = () => {
             STUDIO LOCATIONS
           </h2>
           <div>
-            <h3 className="text-[15px] font-bold tracking-widest font-bebas mb-1 uppercase">Mumbai</h3>
-            <p className="text-[14px] font-thin leading-relaxed inter">
+            <h3 className="text-[15px] 2xl:text-[17px] font-bold tracking-widest font-bebas mb-1 uppercase">Mumbai</h3>
+            <p className="text-[14px] 2xl:text-[16px] font-thin leading-relaxed inter">
               1121, Shramik Society, Adarsh Nagar,<br />
               Jogeshwari West, Mumbai,<br />
               Maharashtra 400102
             </p>
           </div>
           <div>
-            <h3 className="text-[15px] font-bold tracking-widest font-bebas mb-1 uppercase">Gurgaon</h3>
-            <p className="text-[14px] font-thin leading-relaxed inter">
+            <h3 className="text-[15px] 2xl:text-[17px] font-bold tracking-widest font-bebas mb-1 uppercase">Gurgaon</h3>
+            <p className="text-[14px] 2xl:text-[16px] font-thin leading-relaxed inter">
               Main CRPF Camp Road, Sector 61,<br />
               Village Ulahavas, Opp. IOC Petrol Pump,<br />
               Gurgaon, Haryana
             </p>
           </div>
           <div>
-            <h3 className="text-[15px] font-bold tracking-widest font-bebas mb-1 uppercase">Thane</h3>
-            <p className="text-[14px] font-thin leading-relaxed inter">
+            <h3 className="text-[15px] 2xl:text-[17px] font-bold tracking-widest font-bebas mb-1 uppercase">Thane</h3>
+            <p className="text-[14px] 2xl:text-[16px] font-thin leading-relaxed inter">
               Kothari Compound, Neelkanth Grns Rd,<br />
               Opp. Baccha Party, Manpada,<br />
               Thane West, Maharashtra 400607
@@ -70,7 +70,7 @@ const Footer = () => {
           <h2 className="text-[20px] font-bold tracking-widest font-bebas uppercase">
             CONNECT WITH US
           </h2>
-          <div className="flex flex-col gap-3 text-[15px] font-thin">
+          <div className="flex flex-col gap-3 text-[15px] 2xl:text-lg font-thin">
             <a href="#" className="flex items-center gap-3 hover:underline">
               <FaFacebookF /> Facebook
             </a>
@@ -81,7 +81,7 @@ const Footer = () => {
               <FaInstagram /> Instagram
             </a>
           </div>
-          <div className="mt-4 text-[14px] font-thin">
+          <div className="mt-4 text-[14px] 2xl:text-lg font-thin inter">
             <a href="mailto:hello@ocddetailstudio.com" className="underline">
               hello@ocddetailstudio.com
             </a>
