@@ -1,5 +1,5 @@
-import React from "react";
-import AboutImg from "../assets/componets-bg/AboutImg.jpg"; // Replace with your actual image path
+
+import AboutImg from "../assets/componets-bg/AboutImg.jpg"; 
 
 const AboutTheBrand = () => {
   return (

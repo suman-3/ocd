@@ -11,21 +11,23 @@ export default function Blogs() {
     const fetchBlogs = async () => {
       try {
         // const response = await axios.get("http://localhost:4000/blogs?page=1&limit=3");
-            const response = await axios.get(`${import.meta.env.VITE_API_BASE}/blogs?page=1&limit=3`);
-            const API_BASE = import.meta.env.VITE_API_BASE;
-            console.log("API_BASE is:", API_BASE);
-            fetch(`${API_BASE}/services`);
-            axios.get(`${API_BASE}/blogs?page=1&limit=3`);
-            console.log(import.meta.env);
-
-
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_BASE}/blogs?page=1&limit=3`
+        );
+        const API_BASE = import.meta.env.VITE_API_BASE;
+        console.log("API_BASE is:", API_BASE);
+        fetch(`${API_BASE}/services`);
+        axios.get(`${API_BASE}/blogs?page=1&limit=3`);
+        console.log(import.meta.env);
 
         const blogs = response.data.data || [];
 
         // fetch details for each blog to get images
         const withImages = await Promise.all(
           blogs.map(async (b) => {
-            const details = await axios.get(`http://localhost:4000/blogs/${b.id}`);
+            const details = await axios.get(
+              `${import.meta.env.VITE_API_BASE}/blogs/${b.id}`
+            );
             return { ...b, image1: details.data.image1 };
           })
         );
@@ -49,8 +51,9 @@ export default function Blogs() {
           DETAILING DEMYSTIFIEDgigg:{" "}
           <span className="text-custom-red">FROM MYTHS TO MASTERY.</span>
         </h2>
-        <p className="text-center text-gray-300 max-w-3xl mx-auto mb-10">
-          Straight from the studio : insights, how-tos, and expert tips to help you protect what you drive.
+        <p className="text-center text-gray-300 max-w-3xl mx-auto mb-10 inter">
+          Straight from the studio : insights, how-tos, and expert tips to help
+          you protect what you drive.
         </p>
 
         {/* Loader */}
@@ -110,7 +113,7 @@ export default function Blogs() {
         <div className="flex justify-center mt-12">
           <Link
             to="/blogs"
-            className="bg-custom-red px-8 py-3 text-white font-bold uppercase shadow-[0_24px_60px_rgba(255,0,0,0.25)]"
+            className="bg-custom-red px-8 py-3 text-white font-bold shadow-[0_24px_60px_rgba(255,0,0,0.25)]"
           >
             Read All
           </Link>
