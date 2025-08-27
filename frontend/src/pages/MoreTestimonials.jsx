@@ -1,7 +1,7 @@
 import React from "react";
 import kumar from "../assets/componets-bg/kumar.jpg";
 import bajaj from "../assets/componets-bg/Bajaj.jpg";
-import narula from "../assets/componets-bg/narula.png";
+import narula from "../assets/componets-bg/Narula.png";
 import mathew from "../assets/componets-bg/mathew.jpg";
 import quoteIcon from "../assets/icon/quoate.png";
 
