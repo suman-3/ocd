@@ -333,21 +333,24 @@ export default function ContactSection() {
             {/* Social Icons (outlined squares) */}
             <div className="flex gap-3 mt-3">
               <a
-                href="#"
+                href="https://youtube.com/@ocddetailstudiogurgaon?si=Hm-ktnUTAi_wpR5C"
+                target="_blank"
                 className="border border-gray-300 p-2 w-10 h-10 flex items-center justify-center hover:bg-gray-200 transition"
                 aria-label="YouTube"
               >
                 <FaYoutube className="text-gray-800" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/ocddetailstudiogurgaon?igsh=MW5uaWJ3NGpxdmR4Mw=="
+                target="_blank"
                 className="border border-gray-300 p-2 w-10 h-10 flex items-center justify-center hover:bg-gray-200 transition"
                 aria-label="Instagram"
               >
                 <FaInstagram className="text-gray-800" />
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/share/1G6D4LXA4C/?mibextid=wwXIfr"
+                target="_blank"
                 className="border border-gray-300 p-2 w-10 h-10 flex items-center justify-center hover:bg-gray-200 transition"
                 aria-label="Facebook"
               >

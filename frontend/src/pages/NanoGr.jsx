@@ -35,7 +35,7 @@ export default function NanoGr() {
   const handleNextSlide = () => {
     setFade(true);
     setTimeout(() => {
-      setCurrentIndex((prevIndex) => 
+      setCurrentIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
       setFade(false);
@@ -69,21 +69,21 @@ export default function NanoGr() {
           >
             <img
               className={`w-full h-full object-cover rounded-lg cursor-pointer transition-opacity duration-300 ease-in-out ${
-                fade ? 'opacity-0' : 'opacity-100'
+                fade ? "opacity-0" : "opacity-100"
               }`}
               src={images[currentIndex].src}
               alt={images[currentIndex].title}
             />
           </a>
         </div>
-        
+
         {/* Dots Container */}
         <div className="flex justify-center mt-2.5 gap-2">
           {images.map((_, index) => (
             <div
               key={index}
               className={`w-3 h-3 rounded-full cursor-pointer transition-colors duration-200 ${
-                currentIndex === index ? 'bg-red-500' : 'bg-white'
+                currentIndex === index ? "bg-red-500" : "bg-white"
               }`}
               onClick={() => handleDotClick(index)}
             ></div>
@@ -93,34 +93,42 @@ export default function NanoGr() {
 
       {/* Right Side - Text & Button */}
       <div className="flex-1 lg:pl-8 text-center lg:text-left">
-        <h1 
+        <h1
           className="font-bebas text-4xl sm:text-5xl font-normal leading-tight lg:leading-none tracking-normal uppercase mb-6"
-          style={{ 
+          style={{
             fontFamily: "'Bebas Neue', sans-serif",
-            lineHeight: "100%"
+            lineHeight: "100%",
           }}
         >
           ARTDESHINE NANO GRAPHENE +
         </h1>
-        
+
         <p className="text-base leading-relaxed mb-8 inter max-w-prose">
           NGC+ (Nano Graphene Coating) is the most advanced protective coating
-          yet. <br className="hidden lg:block" /> 
-          Built for extreme durability, faster curing, and a deeper,
-          glossier finish. <br className="hidden lg:block" /> 
-          Its enhanced hydrophobic and self-cleaning
-          properties mean your car stays cleaner for longer, with less effort.
-          <br /><br /> 
-          Designed to resist the harshest elements, NGC+ not only protects
-          your paint, but it also elevates its look and feel. For those who demand the best,
-          nothing <br className="hidden lg:block" />else comes close.
+          yet. <br className="hidden lg:block" />
+          Built for extreme durability, faster curing, and a deeper, glossier
+          finish. <br className="hidden lg:block" />
+          Its enhanced hydrophobic and self-cleaning properties mean your car
+          stays cleaner for longer, with less effort.
+          <br />
+          <br />
+          Designed to resist the harshest elements, NGC+ not only protects your
+          paint, but it also elevates its look and feel. For those who demand
+          the best, nothing <br className="hidden lg:block" />
+          else comes close.
         </p>
-        
+
         <button
+          onClick={() =>
+            window.open(
+              "https://youtube.com/@ocddetailstudiogurgaon?si=Hm-ktnUTAi_wpR5C",
+              "_blank"
+            )
+          }
           className={`inter py-3 px-6 border-none rounded-lg text-base cursor-pointer w-full sm:w-[250px] text-center font-medium transition-all duration-300 ease-in-out ${
-            hover 
-              ? 'bg-amber-600 shadow-[0_0_15px_#D97706]' 
-              : 'bg-red-500 hover:bg-red-600'
+            hover
+              ? "bg-amber-600 shadow-[0_0_15px_#D97706]"
+              : "bg-red-500 hover:bg-red-600"
           }`}
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}

@@ -47,16 +47,17 @@ const CallToaction = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 mb-8 justify-center">
             <button
-              className="bg-custom-red text-white rounded-md hover:bg-red-700 transition-colors min-w-[150px] flex items-center justify-center inter"
-              style={{ fontFamily: 'Inter', padding: '8px 16px', fontSize: '14px' }} // reduced font size
+              onClick={() => window.open("https://wa.me/919818122723?text=Hello%2C%20I%20would%20like%20to%20book%20a%20free%20consultation.", "_blank")}
+              className="bg-custom-red text-white rounded-md hover:bg-red-700 inter transition-colors min-w-[150px] flex items-center justify-center inter"
+              style={{ padding: '8px 16px', fontSize: '14px' }} // reduced font size
             >
               Book a Free Consultation
             </button>
 
             <button
               onClick={() => window.open("tel:+919818122723", "_blank")}
-              className="bg-custom-red text-white rounded-md hover:bg-red-700 transition-colors min-w-[150px] flex items-center justify-center gap-2 inter"
-              style={{ fontFamily: 'Inter', padding: '8px 16px', fontSize: '14px' }} // reduced font size
+              className="bg-custom-red text-white rounded-md inter hover:bg-red-700 transition-colors min-w-[150px] flex items-center justify-center gap-2 inter"
+              style={{  padding: '8px 16px', fontSize: '14px' }} // reduced font size
             >
               <Phone className="w-5 h-5" /> Call Now
             </button>
@@ -66,8 +67,8 @@ const CallToaction = () => {
 
             {/* Bottom text */}
             <p
-              className="text-white text-lg leading-relaxed"
-              style={{ fontWeight: 400, fontFamily: 'Inter', maxWidth: '600px', margin: '0 auto', fontSize: '14px' }}
+              className="text-white text-lg leading-relaxed inter"
+              style={{ fontWeight: 400, maxWidth: '600px', margin: '0 auto', fontSize: '14px' }}
             >
               Ppf peeling? Swirl marks after ceramic? Something not sitting right? Let's get it sorted — the right way.
             </p>
@@ -100,9 +101,8 @@ const CallToaction = () => {
             </h1>
 
             <p
-              className="mb-8 tracking-wide"
+              className="mb-8 tracking-wide inter"
               style={{
-                fontFamily: 'Inter',
                 fontStyle: 'normal',
                 lineHeight: '100%',
                 letterSpacing: '0%',
@@ -118,9 +118,9 @@ const CallToaction = () => {
             {/* Button */}
             <div className="mb-8 flex justify-center">
              <button
-              className="bg-custom-red text-white rounded-md hover:bg-red-700 transition-colors min-w-[200px] flex items-center justify-center"
+             onClick={() => window.open("https://wa.me/919818122723?text=I'm%20interested%20in%20franchise%20opportunities", "_blank")}
+              className="bg-custom-red inter text-white rounded-md hover:bg-red-700 transition-colors min-w-[200px] flex items-center justify-center"
               style={{
-                fontFamily: 'Inter',   // normal lowercase
                 padding: '8px 16px',   // reduced padding
                 fontSize: '14px',      // reduced font size
                 textTransform: 'none', // ensure normal case
@@ -133,10 +133,9 @@ const CallToaction = () => {
 
             {/* Bottom text */}
             <p
-            className="text-white leading-relaxed"
+            className="text-white leading-relaxed inter"
             style={{
               fontWeight: 400,
-              fontFamily: 'Inter',   // allows lowercase
               maxWidth: '600px',     // reduce width
               margin: '0 auto',
               fontSize: '14px',      // smaller font
