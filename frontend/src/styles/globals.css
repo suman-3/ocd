@@ -1,8 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 /* Scrolling text animation */
 @keyframes scroll {
   0% {
@@ -33,5 +34,3 @@ body,
   background-color: #000000;
   min-height: 100vh;
 }
-
-

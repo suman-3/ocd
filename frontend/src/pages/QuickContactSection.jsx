@@ -123,7 +123,7 @@ const QuickContactSection = () => {
 
   return (
     <section className="relative bg-black text-white w-full overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-12 sm:py-16 lg:py-20 2xl:max-w-screen-2xl">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-12 lg:py-10 2xl:max-w-screen-2xl">
         {/* Header Section */}
         <div className="text-center mb-8 sm:mb-10 lg:mb-12">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold font-bebas tracking-wider uppercase leading-tight">
