@@ -6,11 +6,11 @@ import logo from '../assets/logo/logo.png'
 
 export default function Testimonials() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 2xl:gap-10 items-stretch max-w-[1400px] 2xl:max-w-screen-2xl mx-auto  py-14 px-10 lg:px-20 2xl:px-4">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 2xl:gap-10 items-stretch max-w-[1400px] 2xl:max-w-screen-2xl mx-auto  py-4 md:py-6 px-6 md:px-10 lg:px-20 2xl:px-4">
       {/* LEFT COLUMN */}
-      <div className="flex flex-col gap-8 items-stretch">
+      <div className="flex flex-col gap-6 md:gap-8 items-stretch">
         {/* Card 1 */}
-        <div className="bg-white p-7 shadow-[0_12px_30px_rgba(0,0,0,0.45),0_6px_15px_rgba(0,0,0,0.2)] rounded-md flex flex-col justify-between max-w-[800px] mx-auto h-full">
+        <div className="bg-white p-5 md:p-7 shadow-[0_12px_30px_rgba(0,0,0,0.45),0_6px_15px_rgba(0,0,0,0.2)] rounded-md flex flex-col justify-between max-w-[800px] mx-auto h-full">
           <div>
             <h3 
               className="text-4xl lg:text-[36px] leading-none mb-3 uppercase text-gray-900 font-normal tracking-normal"
@@ -43,7 +43,7 @@ export default function Testimonials() {
         </div>
 
         {/* Card 2 */}
-        <div className="bg-white p-7 shadow-[0_12px_30px_rgba(0,0,0,0.45),0_6px_15px_rgba(0,0,0,0.2)] rounded-md flex flex-col justify-between max-w-[800px] mx-auto h-full">
+        <div className="bg-white p-5 md:p-7 shadow-[0_12px_30px_rgba(0,0,0,0.45),0_6px_15px_rgba(0,0,0,0.2)] rounded-md flex flex-col justify-between max-w-[800px] mx-auto h-full">
           <div>
             <h3 
               className="text-4xl lg:text-[36px] leading-none mb-3 uppercase text-gray-900 font-normal tracking-normal"
@@ -81,9 +81,9 @@ export default function Testimonials() {
       </div>
 
       {/* RIGHT COLUMN */}
-      <div className="flex flex-col gap-8 items-stretch order-first lg:order-none">
+      <div className="flex flex-col gap-2 md:gap-8 items-stretch order-first lg:order-none">
         {/* Header */}
-        <div className="mb-10 2xl:mb-0">
+        <div className="mb-4 md:mb-10 2xl:mb-0">
           <div className="flex items-center gap-2 mb-3">
             <img src={logo} alt="Logo" className="w-[30px] h-[30px]" />
             <h5 className="font-inter text-xs uppercase tracking-[6px] text-gray-500 m-0 font-bold">TESTIMONIALS</h5>
@@ -127,7 +127,7 @@ export default function Testimonials() {
         </div>
 
         {/* Card 3 */}
-        <div className="bg-white 2xl:-mt-4 p-7 shadow-[0_12px_30px_rgba(0,0,0,0.45),0_6px_15px_rgba(0,0,0,0.2)] rounded-md flex flex-col justify-between max-w-[800px] mx-auto h-full">
+        <div className="bg-white 2xl:-mt-4 p-5 md:p-7 shadow-[0_12px_30px_rgba(0,0,0,0.45),0_6px_15px_rgba(0,0,0,0.2)] rounded-md flex flex-col justify-between max-w-[800px] mx-auto h-full">
           <div>
             <h3 
               className="text-4xl lg:text-[36px] leading-none mb-3 uppercase text-gray-900 font-normal tracking-normal"

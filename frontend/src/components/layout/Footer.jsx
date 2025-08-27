@@ -1,22 +1,27 @@
-
-import { FaFacebookF, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaYoutube,
+  FaWhatsapp,
+} from "react-icons/fa";
 
 const Footer = () => {
   return (
     <footer className="bg-app-gray text-app-white">
       {/* Main Footer Content */}
       <div className="py-20 px-10 2xl:px-2 grid grid-cols-1 md:grid-cols-3 gap-16 2xl:max-w-screen-2xl mx-auto">
-        
         {/* About Section */}
         <div className="flex flex-col gap-6 items-start">
           <h2 className="text-[20px] font-bold tracking-wider font-bebas uppercase">
             ABOUT OCD DETAIL STUDIO
           </h2>
           <p className="text-[15px] 2xl:text-[16px] font-thin leading-relaxed inter">
-            We’re not just a detailing brand, We’re a community of Perfectionist.
+            We’re not just a detailing brand, We’re a community of
+            Perfectionist.
           </p>
           <p className="text-[15px] 2xl:text-[16px] font-thin leading-relaxed inter">
-            From ceramic coatings to PPF, from superbikes to supercars, we protect what you love to drive.
+            From ceramic coatings to PPF, from superbikes to supercars, we
+            protect what you love to drive.
           </p>
 
           <div className="mt-8">
@@ -40,26 +45,38 @@ const Footer = () => {
             STUDIO LOCATIONS
           </h2>
           <div>
-            <h3 className="text-[15px] 2xl:text-[17px] font-bold tracking-widest font-bebas mb-1 uppercase">Mumbai</h3>
+            <h3 className="text-[15px] 2xl:text-[17px] font-bold tracking-widest font-bebas mb-1 uppercase">
+              Mumbai
+            </h3>
             <p className="text-[14px] 2xl:text-[16px] font-thin leading-relaxed inter">
-              1121, Shramik Society, Adarsh Nagar,<br />
-              Jogeshwari West, Mumbai,<br />
+              1121, Shramik Society, Adarsh Nagar,
+              <br />
+              Jogeshwari West, Mumbai,
+              <br />
               Maharashtra 400102
             </p>
           </div>
           <div>
-            <h3 className="text-[15px] 2xl:text-[17px] font-bold tracking-widest font-bebas mb-1 uppercase">Gurgaon</h3>
+            <h3 className="text-[15px] 2xl:text-[17px] font-bold tracking-widest font-bebas mb-1 uppercase">
+              Gurgaon
+            </h3>
             <p className="text-[14px] 2xl:text-[16px] font-thin leading-relaxed inter">
-              Main CRPF Camp Road, Sector 61,<br />
-              Village Ulahavas, Opp. IOC Petrol Pump,<br />
+              Main CRPF Camp Road, Sector 61,
+              <br />
+              Village Ulahavas, Opp. IOC Petrol Pump,
+              <br />
               Gurgaon, Haryana
             </p>
           </div>
           <div>
-            <h3 className="text-[15px] 2xl:text-[17px] font-bold tracking-widest font-bebas mb-1 uppercase">Thane</h3>
+            <h3 className="text-[15px] 2xl:text-[17px] font-bold tracking-widest font-bebas mb-1 uppercase">
+              Thane
+            </h3>
             <p className="text-[14px] 2xl:text-[16px] font-thin leading-relaxed inter">
-              Kothari Compound, Neelkanth Grns Rd,<br />
-              Opp. Baccha Party, Manpada,<br />
+              Kothari Compound, Neelkanth Grns Rd,
+              <br />
+              Opp. Baccha Party, Manpada,
+              <br />
               Thane West, Maharashtra 400607
             </p>
           </div>
@@ -71,13 +88,25 @@ const Footer = () => {
             CONNECT WITH US
           </h2>
           <div className="flex flex-col gap-3 text-[15px] 2xl:text-lg font-thin">
-            <a href="#" className="flex items-center gap-3 hover:underline">
+            <a
+              href="https://www.facebook.com/share/1G6D4LXA4C/?mibextid=wwXIfr"
+              target="_blank"
+              className="flex items-center gap-3 hover:underline"
+            >
               <FaFacebookF /> Facebook
             </a>
-            <a href="#" className="flex items-center gap-3 hover:underline">
+            <a
+              href="https://youtube.com/@ocddetailstudiogurgaon?si=Hm-ktnUTAi_wpR5C"
+              target="_blank"
+              className="flex items-center gap-3 hover:underline"
+            >
               <FaYoutube /> Youtube
             </a>
-            <a href="#" className="flex items-center gap-3 hover:underline">
+            <a
+              href="https://www.instagram.com/ocddetailstudiogurgaon?igsh=MW5uaWJ3NGpxdmR4Mw=="
+              target="_blank"
+              className="flex items-center gap-3 hover:underline"
+            >
               <FaInstagram /> Instagram
             </a>
           </div>
@@ -85,9 +114,12 @@ const Footer = () => {
             <a href="mailto:hello@ocddetailstudio.com" className="underline">
               hello@ocddetailstudio.com
             </a>
-            <p 
-            onClick={() => window.open("tel:+919818122723")}
-            className="mt-1 cursor-pointer">+91-9818122723</p>
+            <p
+              onClick={() => window.open("tel:+919818122723")}
+              className="mt-1 cursor-pointer"
+            >
+              +91-9818122723
+            </p>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import Img2 from "../assets/componets-bg/Sumant.jpg";
 
 const ImageCard = ({ src, alt, name, title }) => {
   return (
-    <div className="relative border-4 border-black w-full md:w-[400px] h-[600px] overflow-hidden group">
+    <div className="relative border-4 border-black w-full md:w-[400px] h-[500px] md:h-[600px] overflow-hidden group">
       {/* Image */}
       <img src={src} alt={alt} className="w-full h-full object-cover" />
 
@@ -24,7 +24,7 @@ const ImageCard = ({ src, alt, name, title }) => {
 
 const WhatWeDo = () => {
   return (
-    <section className="bg-[#f5f5f5] px-4 py-12 text-center">
+    <section className="bg-[#f5f5f5] px-6 py-8 md:py-12 text-center">
       {/* Small heading */}
       <p
         style={{
@@ -39,7 +39,7 @@ const WhatWeDo = () => {
 
       {/* Main heading */}
       <h2
-        className="text-5xl md:text-6xl max-w-5xl mx-auto leading-snug text-center uppercase"
+        className="text-4xl md:text-6xl max-w-5xl mx-auto leading-snug text-center uppercase"
         style={{
           fontFamily: "'Bebas Neue', cursive",
           fontWeight: "400",
@@ -56,14 +56,14 @@ const WhatWeDo = () => {
       </h2>
 
       {/* Image section */}
-      <div className="mt-10 flex flex-col md:flex-row justify-center items-center">
+      <div className="mt-8 md:mt-10 flex flex-col md:flex-row justify-center items-center">
         <ImageCard
           src={Img1}
           alt="Saurabh"
           name="SAURABH"
           title="Co-founder, OCD Detail Studio"
         />
-        <div className="-ml-[4px]">
+        <div className="md:-ml-[4px]">
           <ImageCard
             src={Img2}
             alt="Sumant"

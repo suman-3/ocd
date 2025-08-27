@@ -7,9 +7,9 @@ import quoteIcon from "../assets/icon/quoate.png";
 
 const MoreCustomersSay = () => {
   return (
-    <div className="bg-black text-white px-7 2xl:px-0 font-arial 2xl:max-w-screen-2xl mx-auto">
-      <h2 className="text-left font-['Bebas_Neue'] text-6xl font-normal mb-8 mt-8 pl-4 leading-tight">
-        MORE CUSTOMERS SAY
+    <div className="bg-black text-white px-1 md:px-10 lg:px-12 2xl:px-0 font-arial 2xl:max-w-screen-2xl mx-auto">
+      <h2 className="text-left font-['Bebas_Neue'] text-5xl md:text-6xl font-normal mb-6 md:mb-8 mt-6 md:mt-8 pl-4 leading-tight">
+        MORE <br className="md:hidden" /> CUSTOMERS SAY
       </h2>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-5 lg:gap-8 2xl:gap-10 justify-center px-4 items-stretch mx-auto">

@@ -53,7 +53,7 @@ export default function NanoGr() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-center px-10 bg-black text-white font-sans min-h-[500px] 2xl:max-w-screen-2xl mx-auto 2xl:my-6 gap-10">
+    <div className="flex flex-col lg:flex-row items-center justify-center px-8 md:px-10 bg-black text-white font-sans min-h-[500px] 2xl:max-w-screen-2xl mx-auto 2xl:my-6 gap-6 md:gap-10">
       {/* Left Side - Image Carousel */}
       <div
         className="flex-1 flex flex-col items-center justify-center relative mb-8 lg:mb-0"

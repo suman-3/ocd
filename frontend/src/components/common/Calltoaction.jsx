@@ -88,22 +88,20 @@ const CallToaction = () => {
           {/* Content */}
           <div className="relative z-10 max-w-lg text-center">
             <h1
-              className="mb-6 whitespace-nowrap"
+              className="mb-6 whitespace-nowrap text-3xl md:text-4xl leading-8"
               style={{
                 fontFamily: 'Bebas Neue',
                 fontStyle: 'normal',
-                fontSize: '38px',
-                lineHeight: '100%',
-                letterSpacing: '0%',
+
               }}
             >
-              WANT TO BRING OCD DETAIL STUDIO TO YOUR CITY?
+              WANT TO BRING OCD <br className="md:hidden" /> DETAIL STUDIO TO YOUR CITY?
             </h1>
 
             <p
-              className="mb-8 tracking-wide inter"
+              className="mb-8 tracking-wide inter max-w-xs md:max-w-lg mx-auto inter"
               style={{
-                fontStyle: 'normal',
+ 
                 lineHeight: '100%',
                 letterSpacing: '0%',
                 textAlign: 'center',
@@ -133,10 +131,9 @@ const CallToaction = () => {
 
             {/* Bottom text */}
             <p
-            className="text-white leading-relaxed inter"
+            className="text-white leading-relaxed inter max-w-xs md:max-w-lg"
             style={{
               fontWeight: 400,
-              maxWidth: '600px',     // reduce width
               margin: '0 auto',
               fontSize: '14px',      // smaller font
             }}

@@ -6,7 +6,7 @@ const AboutTheBrand = () => {
     <section className="bg-black text-white px-6 py-8 2xl:py-20 md:px-16 pb-14">
       <div className="flex flex-col md:flex-row items-start 2xl:max-w-screen-2xl mx-auto">
         {/* Left Section */}
-        <div className="md:w-3/5">
+        <div className="w-full md:w-3/5">
           {/* Heading */}
           <div className="flex items-center mb-2">
             <h2

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 const SkeletonCard = ({ cardHeight, cardWidth }) => (
   <div
     className="relative overflow-hidden rounded-md bg-gray-800 animate-pulse"
@@ -22,7 +21,6 @@ const SkeletonCard = ({ cardHeight, cardWidth }) => (
 );
 
 export default function ServicesSection({
-  columns = 4,
   cardHeight = '26rem',
   cardWidth = undefined
 }) {
@@ -45,22 +43,20 @@ export default function ServicesSection({
       .finally(() => setLoading(false));
   }, []);
 
-  const gridStyle = { gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` };
-
   // 🔹 Skeleton Loader UI
   if (loading) {
     return (
       <section className="relative z-30 pt-16">
-        <div className="text-center py-16 px-8">
+        <div className="text-center py-16 px-5 md:px-8">
           {/* Header skeleton */}
           <div className="pt-28 mb-4">
             <div className="h-12 bg-gray-700 rounded-md w-3/4 mx-auto mb-4 animate-pulse"></div>
             <div className="h-6 bg-gray-600 rounded-md w-1/2 mx-auto animate-pulse"></div>
           </div>
 
-          {/* Cards skeleton grid */}
-          <div className="mt-16 grid gap-8" style={gridStyle}>
-            {Array.from({ length: columns * 2 }).map((_, index) => (
+          {/* Cards skeleton grid - Fixed responsive grid */}
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {Array.from({ length: 8 }).map((_, index) => (
               <SkeletonCard
                 key={index}
                 cardHeight={cardHeight}
@@ -83,9 +79,9 @@ export default function ServicesSection({
   }
 
   return (
-    <section className="relative z-30 pt-16 px-4 2xl:px-10">
-      <div className="text-center py-16 px-8">
-        <h1 className="font-bebas text-6xl pt-28 text-app-white">
+    <section className="relative z-30 pt-10 md:pt-16 px-4 2xl:px-10">
+      <div className="text-center py-12 md:py-16 px-4 md:px-6">
+        <h1 className="font-bebas text-5xl md:text-6xl pt-28 text-app-white">
           Where Precision Isn't a Feature
           <span className="text-custom-red"> It's the Standard </span>
         </h1>
@@ -93,7 +89,8 @@ export default function ServicesSection({
           Every surface. Every curve. Every ride. We treat your machine like a masterpiece.
         </h3>
 
-        <div className="mt-16 grid gap-6" style={gridStyle}>
+        {/* Fixed responsive grid - removed inline styles and conflicting classes */}
+        <div className="mt-10 md:mt-16 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {services.map((s) => (
             <div
               key={s.id}
@@ -116,7 +113,7 @@ export default function ServicesSection({
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-500 group-hover:opacity-0"></div>
 
               {/* Default title - only visible when not hovering */}
-              <div className="absolute left-6 bottom-6 z-20 transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-4">
+              <div className="absolute left-3 bottom-6 z-20 transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-4">
                 <h3 className="font-bebas text-[2.6rem] leading-none tracking-tighter text-white drop-shadow-lg uppercase">
                   {s.name}
                 </h3>
@@ -136,9 +133,9 @@ export default function ServicesSection({
                 </p>
 
                 {/* Call to Action Arrow */}
-                {/* <div className="flex items-start transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 delay-300"> */}
-               <div className="text-white text-3xl text-left">→</div>
-                {/* </div> */}
+                <div className="text-white text-3xl text-left transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 delay-300">
+                  →
+                </div>
               </div>
             </div>
           ))}

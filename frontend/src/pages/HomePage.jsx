@@ -90,7 +90,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="mx-auto">
+    <div className="mx-auto overflow-x-hidden">
       <FloatingContactButtons />
       <section className="text-app-white relative min-h-screen overflow-hidden">
         <video
@@ -106,21 +106,21 @@ const HomePage = () => {
         <div className="absolute top-0 left-0 w-full h-full bg-black/60 z-10"></div>
 
         <div className="relative z-20 items-center justify-center flex flex-col gap-6 min-h-screen">
-          <div className="mt-10">
+          <div className="mt-2 md:mt-10">
             <h4 className="font-inter font-normal leading-[100%] tracking-[0%] text-center uppercase text-[#FFFFFFB3] inter">
               Trusted by Auto Enthusiasts
             </h4>
           </div>
 
           <div>
-            <h1 className="font-bebas text-7xl 2xl:text-8xl font-extralight text-center mt-2 ">
+            <h1 className="font-bebas text-6xl md:text-7xl 2xl:text-8xl font-extralight text-center mt-2 ">
               Obsessively Detailed. <br /> Driven by perfection.
             </h1>
           </div>
 
           <div>
             <p
-              className="font-medium text-lg 2xl:text-xl text-center mt-4 xl:mt-3 inter"
+              className="font-medium text-md md:text-lg 2xl:text-xl text-center mt-4 xl:mt-3 inter w-[90%] md:w-full mx-auto"
               style={{ color: "#FFFFFF" }}
             >
               Premium PPF, ceramic and graphene coatings for your ride. Handled
@@ -146,10 +146,10 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="relative bg-black py-32">
+      <section className="relative bg-black py-0 md:py-32">
         {/* Video positioned to overlap between sections */}
-        <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 z-30">
-          <div className="w-[80vw] max-w-[900px] aspect-video">
+        <div className="absolute -top-10 md:-top-14 left-1/2 transform -translate-x-1/2 z-30">
+          <div className="w-[90vw] max-w-[900px] aspect-video">
             {renderVideoThumbnail(null)}
           </div>
         </div>
@@ -159,17 +159,17 @@ const HomePage = () => {
         <ServicesSection columns={4} cardHeight="28rem" cardWidth="420px" />
       </section>
 
-      <section className="text-white pt-4 pb-6 2xl:py-10 2xl:pb-14 px-10 2xl:max-w-screen-2xl mx-auto">
-        <div className="flex items-center justify-between  gap-10 ">
+      <section className="text-white pt-4 pb-10 md:pb-6 2xl:py-10 2xl:pb-14 px-8 md:px-10 2xl:max-w-screen-2xl mx-auto">
+        <div className="flex flex-col md:flex-row items-center justify-between  gap-8 md:gap-10">
           <div className="flex flex-col gap-4 h-full">
-            <h1 className="pt-14 2xl:pt-20 text-app-white">
-              <span className="text-7xl font-bebas">Premium Detailing</span>
+            <h1 className="md:pt-14 2xl:pt-20 text-app-white">
+              <span className="text-5xl md:text-7xl font-bebas">Premium Detailing</span>
               <br />
               <span className="text-custom-red text-5xl font-bebas">
                 For Cars & Bikes.
               </span>
             </h1>
-            <h1 className="text-2xl 2xl:text-3xl font-light pt-4 text-app-white mb-4 font-bebas">
+            <h1 className="text-2xl 2xl:text-3xl font-light pt-2 md:pt-4 text-app-white mb-4 font-bebas">
               Every Surface. Every Curve. Every Inch. Perfected.
             </h1>
 
@@ -199,7 +199,7 @@ const HomePage = () => {
               <span className="font-bold"> all cars and bikes.</span>
             </p>
 
-            <div className="flex flex-col gap-4 mt-4">
+            <div className="flex flex-col gap-4 mt-2 md:mt-4">
               <h2
                 className="pt-4 text-app-white"
                 style={{
@@ -214,7 +214,7 @@ const HomePage = () => {
                 SPEAK WITH THE FOUNDERS DIRECTLY
               </h2>
 
-              <div className="flex gap-4">
+              <div className="flex gap-4 flex-col md:flex-row">
                 <button
                   onClick={() => window.open("tel:+919818122723", "_blank")}
                   className="bg-custom-red border-custom-red text-white font-bold px-8 py-2 text-lg border-2 rounded-md flex items-center justify-center"
@@ -256,12 +256,12 @@ const HomePage = () => {
             </div>
           </div>
 
-          <div className="relative w-[500px] h-[600px] ml-8">
+          <div className="relative w-[500px] h-[600px] md:ml-8 hidden md:block">
             {/* Bike image - positioned at top right, now above */}
             <img
               src={OCD}
               alt="Bike"
-              className="absolute top-0 2xl:-top-10 right-0 2xl:-right-6 w-[420px] 2xl:w-[500px] h-auto z-30 rounded-sm shadow-lg"
+              className="absolute top-0 2xl:-top-10 right-0 2xl:-right-6 w-[240px] md:w-[420px] 2xl:w-[500px] h-auto z-30 rounded-sm shadow-lg"
             />
 
             <img
@@ -275,11 +275,11 @@ const HomePage = () => {
 
       <NanoGr />
 
-      <section className="mt-6">
+      <section className="mt-8 md:mt-6">
         <CallToaction />
       </section>
 
-      <section id="testimonials" className="bg-white py-16">
+      <section id="testimonials" className="bg-white py-6 md:py-10">
         <Testimonials />
       </section>
 
@@ -287,8 +287,8 @@ const HomePage = () => {
         <MoreCustomersSay />
       </section>
 
-      <section className="py-10 flex flex-col items-center justify-center gap-8">
-        <h1 className="font-bebas text-5xl pt-8 text-app-white">
+      <section className="py-6 md:py-10 flex flex-col items-center justify-center gap-8">
+        <h1 className="font-bebas text-4xl text-center md:text-5xl pt-6 md:pt-8 text-app-white">
           Why Car & Bike Owners{" "}
           <span className="text-red-600">Trust OCD Detail Studio</span>
         </h1>
@@ -351,18 +351,18 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="pt-10 overflow-hidden bg-black">
+      <section className="pt-8 md:pt-10 overflow-hidden bg-black">
         <div className="whitespace-nowrap">
           <div className="inline-block animate-scroll">
-            <span className="font-bebas text-9xl text-white mr-10">
+            <span className="font-bebas text-5xl md:text-9xl text-white mr-10">
               New Car & Bike Feel. Every Day Drive. Premium Detailing. Zero
               Compromise. OCD Detail Studio – Mumbai | Gurgaon | Thane.
             </span>
-            <span className="font-bebas text-9xl text-white mr-10">
+            <span className="font-bebas text-5xl md:text-9xl text-white mr-10">
               New Car & Bike Feel. Every Day Drive. Premium Detailing. Zero
               Compromise. OCD Detail Studio – Mumbai | Gurgaon | Thane.
             </span>
-            <span className="font-bebas text-9xl text-white mr-10">
+            <span className="font-bebas text-5xl md:text-9xl text-white mr-10">
               New Car & Bike Feel. Every Day Drive. Premium Detailing. Zero
               Compromise. OCD Detail Studio – Mumbai | Gurgaon | Thane.
             </span>
