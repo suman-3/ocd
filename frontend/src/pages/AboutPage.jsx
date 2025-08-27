@@ -11,6 +11,7 @@ import Diffrent from "../components/common/Aboutpage/Diffrent";
 import WhatWeDo from "./WhatWeDo";
 import AboutTheBrand from "./AboutTheBrand";
 import WhatOCDStandsFor from "./WhatOcdReallyStandsFor";
+import WhatOCDStandsForMobile from "./WhatOCDStandForMobile";
 
 const AboutPage = () => {
   // Mock team data - replace with real data
@@ -48,6 +49,7 @@ const AboutPage = () => {
       <WhatWeDo />
       <AboutTheBrand />
       <WhatOCDStandsFor />
+      <WhatOCDStandsForMobile />
     </div>
   );
 };

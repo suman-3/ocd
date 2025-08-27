@@ -132,32 +132,32 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="bg-gray-100 py-16">
-      <div className="max-w-7xl 2xl:max-w-screen-2xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+    <section id="contact" className="bg-gray-100 py-8 sm:py-10 lg:py-16">
+      <div className="max-w-7xl 2xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start">
           {/* LEFT: white card form */}
-          <div className="bg-white p-10 shadow-sm max-w-[760px]">
+          <div className="bg-white p-6 sm:p-8 lg:p-10 shadow-sm w-full max-w-[760px] mx-auto lg:mx-0">
             {/* CONTACT FORM heading */}
-            <h3 className="font-bebas text-5xl uppercase tracking-wider mb-10">
+            <h3 className="font-bebas text-3xl sm:text-4xl lg:text-5xl uppercase tracking-wider mb-6 sm:mb-8 lg:mb-10">
               CONTACT FORM
             </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6" noValidate>
               {/* Name */}
               <div className="relative">
-                <FaUserAlt className="absolute left-0 top-3 text-gray-400" />
+                <FaUserAlt className="absolute left-0 top-3 text-gray-400 text-sm" />
                 <input
                   type="text"
                   name="name"
                   placeholder="Name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className={`pl-8 w-full border-b inter py-3 placeholder-gray-400 focus:outline-none ${
+                  className={`pl-6 sm:pl-8 w-full border-b inter py-3 placeholder-gray-400 focus:outline-none text-sm sm:text-base ${
                     errors.name ? "border-red-500" : "border-gray-300"
                   }`}
                 />
                 {errors.name && (
-                  <span className="text-red-500 text-sm mt-1 block">
+                  <span className="text-red-500 text-xs sm:text-sm mt-1 block">
                     {errors.name}
                   </span>
                 )}
@@ -165,19 +165,19 @@ export default function ContactSection() {
 
               {/* Email */}
               <div className="relative">
-                <FaEnvelope className="absolute left-0 top-3 text-gray-400" />
+                <FaEnvelope className="absolute left-0 top-3 text-gray-400 text-sm" />
                 <input
                   type="email"
                   name="email"
                   placeholder="Email Address"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className={`pl-8 w-full border-b inter py-3 placeholder-gray-400 focus:outline-none ${
+                  className={`pl-6 sm:pl-8 w-full border-b inter py-3 placeholder-gray-400 focus:outline-none text-sm sm:text-base ${
                     errors.email ? "border-red-500" : "border-gray-300"
                   }`}
                 />
                 {errors.email && (
-                  <span className="text-red-500 text-sm mt-1 block">
+                  <span className="text-red-500 text-xs sm:text-sm mt-1 block">
                     {errors.email}
                   </span>
                 )}
@@ -185,41 +185,41 @@ export default function ContactSection() {
 
               {/* Message */}
               <div className="relative">
-                <FaPencilAlt className="absolute left-0 top-4 text-gray-400" />
+                <FaPencilAlt className="absolute left-0 top-4 text-gray-400 text-sm" />
                 <textarea
                   name="message"
                   placeholder="Message"
                   rows="4"
                   value={formData.message}
                   onChange={handleInputChange}
-                  className={`pl-8 w-full border-b inter py-3 placeholder-gray-400 focus:outline-none resize-none ${
+                  className={`pl-6 sm:pl-8 w-full border-b inter py-3 placeholder-gray-400 focus:outline-none resize-none text-sm sm:text-base ${
                     errors.message ? "border-red-500" : "border-gray-300"
                   }`}
                 />
                 {errors.message && (
-                  <span className="text-red-500 text-sm mt-1 block">
+                  <span className="text-red-500 text-xs sm:text-sm mt-1 block">
                     {errors.message}
                   </span>
                 )}
               </div>
 
               {/* Checkbox */}
-              <div className="flex items-start gap-3">
+              <div className="flex items-start gap-2 sm:gap-3">
                 <input
                   id="privacy"
                   type="checkbox"
                   name="privacyAgreed"
                   checked={formData.privacyAgreed}
                   onChange={handleInputChange}
-                  className="mt-1"
+                  className="mt-1 w-4 h-4 sm:w-5 sm:h-5"
                 />
                 <div className="flex flex-col">
-                  <label htmlFor="privacy" className="text-sm text-gray-600 inter">
+                  <label htmlFor="privacy" className="text-xs sm:text-sm text-gray-600 inter leading-relaxed">
                     I agree that my data is collected and stored as per the
                     privacy policy.
                   </label>
                   {errors.privacyAgreed && (
-                    <span className="text-red-500 text-sm mt-1">
+                    <span className="text-red-500 text-xs sm:text-sm mt-1">
                       {errors.privacyAgreed}
                     </span>
                   )}
@@ -231,13 +231,13 @@ export default function ContactSection() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`mt-4 py-3 inter px-8 font-bold w-48 flex items-center justify-center gap-3 text-white ${
+                  className={`mt-4 py-3 inter px-6 sm:px-8 font-bold w-full sm:w-48 flex items-center justify-center gap-2 sm:gap-3 text-white text-sm sm:text-base ${
                     isSubmitting
                       ? "bg-gray-400 cursor-not-allowed"
                       : "bg-custom-red hover:bg-red-700"
-                  }`}
+                  } transition-colors duration-200`}
                 >
-                  <FaPaperPlane />
+                  <FaPaperPlane className="text-sm" />
                   {isSubmitting ? "Sending..." : "Get In Touch"}
                 </button>
               </div>
@@ -245,26 +245,25 @@ export default function ContactSection() {
           </div>
 
           {/* RIGHT: contact info */}
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center px-1 sm:px-0">
             <h2
               style={{
                 fontFamily: "'Bebas Neue', sans-serif",
                 fontWeight: 400,
-                fontSize: 50,
                 fontStyle: "normal",
-                lineHeight: "55.28px",
+                lineHeight: "1.1",
                 letterSpacing: "-0.58px",
                 verticalAlign: "middle",
                 textTransform: "uppercase",
               }}
-              className="text-3xl md:text-4xl leading-tight"
+              className="text-3xl md:text-4xl lg:text-5xl leading-tight"
             >
               HAVE QUESTIONS? GOT A MACHINE
               <br />
               <span className="text-custom-red">THAT DESERVES BETTER?</span>
             </h2>
 
-            <p className="mt-5 text-gray-700 text-base leading-relaxed max-w-[540px] inter">
+            <p className="mt-4 sm:mt-5 text-gray-700 text-sm sm:text-base leading-relaxed max-w-[540px] inter">
               Whether it's about paint correction, PPF, ceramic coating, or just
               getting started — drop us a message and we'll guide you with
               clarity, not fluff.
@@ -272,17 +271,17 @@ export default function ContactSection() {
 
             {/* Studio Locations label */}
             <div className="mt-6">
-              <p className="font-bebas uppercase text-xl mb-3">
+              <p className="font-bebas uppercase text-lg sm:text-xl mb-3">
                 Studio Locations
               </p>
 
-              <div className="space-y-5 text-gray-700">
+              <div className="space-y-4 sm:space-y-5 text-gray-700">
                 {/* Mumbai */}
                 <div>
-                  <p className="flex 2xl:text-lg items-center gap-2 font-semibold text-gray-900 inter">
+                  <p className="flex text-sm sm:text-base 2xl:text-lg items-center gap-2 font-semibold text-gray-900 inter">
                     📌 Mumbai
                   </p>
-                  <p className="text-sm 2xl:text-[17px] text-gray-600 inter">
+                  <p className="text-xs sm:text-sm 2xl:text-[17px] text-gray-600 inter leading-relaxed">
                     1121, Shramik Society, Adarsh Nagar, Jogeshwari West,
                     Mumbai, Maharashtra 400102
                   </p>
@@ -290,10 +289,10 @@ export default function ContactSection() {
 
                 {/* Gurgaon */}
                 <div>
-                  <p className="flex 2xl:text-lg items-center gap-2 font-semibold text-gray-900 inter">
+                  <p className="flex text-sm sm:text-base 2xl:text-lg items-center gap-2 font-semibold text-gray-900 inter">
                     📌 Gurgaon
                   </p>
-                  <p className="text-sm 2xl:text-[17px] text-gray-600 inter">
+                  <p className="text-xs sm:text-sm 2xl:text-[17px] text-gray-600 inter leading-relaxed">
                     Main CRPF Camp Road, Sector 61, Village Ullahavas, Opp. IOC
                     Petrol Pump, Gurgaon, Haryana
                   </p>
@@ -301,10 +300,10 @@ export default function ContactSection() {
 
                 {/* Thane */}
                 <div>
-                  <p className="flex  2xl:text-lg items-center gap-2 font-semibold text-gray-900 inter">
+                  <p className="flex text-sm sm:text-base 2xl:text-lg items-center gap-2 font-semibold text-gray-900 inter">
                     📌 Thane
                   </p>
-                  <p className="text-sm 2xl:text-[17px] text-gray-600 inter">
+                  <p className="text-xs sm:text-sm 2xl:text-[17px] text-gray-600 inter leading-relaxed">
                     Kothari Compound, Neelkanth Grns Rd, Opp. Baccha Party,
                     Manpada, Thane West, Maharashtra 400607
                   </p>
@@ -318,13 +317,13 @@ export default function ContactSection() {
                 onClick={() =>
                   (window.location.href = "mailto:hello@ocddetailstudio.com")
                 }
-                className="underline inter decoration-gray-300 decoration-2 mb-2 inline-block cursor-pointer"
+                className="underline inter decoration-gray-300 decoration-2 mb-2 inline-block cursor-pointer text-sm sm:text-base break-all sm:break-normal hover:text-custom-red transition-colors"
               >
                 hello@ocddetailstudio.com
               </p>
               <p
                 onClick={() => (window.location.href = "tel:+919818122723")}
-                className="mb-3 cursor-pointer inter"
+                className="mb-3 cursor-pointer inter text-sm sm:text-base hover:text-custom-red transition-colors"
               >
                 +91-9818122723
               </p>
@@ -335,26 +334,29 @@ export default function ContactSection() {
               <a
                 href="https://youtube.com/@ocddetailstudiogurgaon?si=Hm-ktnUTAi_wpR5C"
                 target="_blank"
-                className="border border-gray-300 p-2 w-10 h-10 flex items-center justify-center hover:bg-gray-200 transition"
+                rel="noopener noreferrer"
+                className="border border-gray-300 p-2 w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center hover:bg-gray-200 hover:border-custom-red transition-colors duration-200"
                 aria-label="YouTube"
               >
-                <FaYoutube className="text-gray-800" />
+                <FaYoutube className="text-gray-800 text-sm sm:text-base" />
               </a>
               <a
                 href="https://www.instagram.com/ocddetailstudiogurgaon?igsh=MW5uaWJ3NGpxdmR4Mw=="
                 target="_blank"
-                className="border border-gray-300 p-2 w-10 h-10 flex items-center justify-center hover:bg-gray-200 transition"
+                rel="noopener noreferrer"
+                className="border border-gray-300 p-2 w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center hover:bg-gray-200 hover:border-custom-red transition-colors duration-200"
                 aria-label="Instagram"
               >
-                <FaInstagram className="text-gray-800" />
+                <FaInstagram className="text-gray-800 text-sm sm:text-base" />
               </a>
               <a
                 href="https://www.facebook.com/share/1G6D4LXA4C/?mibextid=wwXIfr"
                 target="_blank"
-                className="border border-gray-300 p-2 w-10 h-10 flex items-center justify-center hover:bg-gray-200 transition"
+                rel="noopener noreferrer"
+                className="border border-gray-300 p-2 w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center hover:bg-gray-200 hover:border-custom-red transition-colors duration-200"
                 aria-label="Facebook"
               >
-                <FaFacebookF className="text-gray-800" />
+                <FaFacebookF className="text-gray-800 text-sm sm:text-base" />
               </a>
             </div>
           </div>

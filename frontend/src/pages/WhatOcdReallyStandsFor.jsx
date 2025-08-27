@@ -4,7 +4,7 @@ import WheelImage from "../assets/componets-bg/bi.jpg";
 
 const WhatOCDStandsFor = () => {
   return (
-    <section className="w-full bg-white text-black">
+    <section className="w-full bg-white text-black hidden md:block">
       <div className="flex flex-col md:flex-row min-h-screen 2xl:max-h-[94vh]">
         {/* LEFT HALF */}
         <div className="md:w-[65%] flex flex-col">

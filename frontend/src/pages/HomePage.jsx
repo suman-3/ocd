@@ -372,7 +372,7 @@ const HomePage = () => {
       <section id="AboutUs">
         <AboutPage />
       </section>
-      <section id="ContactSection" className="bg-gray-100 py-16 w-full">
+      <section id="ContactSection" className="bg-gray-100 py-10 md:py-16 w-full">
         <ContactSection />
       </section>
 

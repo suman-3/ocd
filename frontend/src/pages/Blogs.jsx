@@ -44,8 +44,8 @@ export default function Blogs() {
   }, []);
 
   return (
-    <section className="bg-black text-white py-12">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="bg-black text-white py-8 md:py-12">
+      <div className="max-w-7xl mx-auto px-5 md:px-10">
         {/* Heading */}
         <h2 className="font-bebas uppercase text-3xl md:text-4xl text-center tracking-wider mb-3">
           DETAILING DEMYSTIFIEDgigg:{" "}

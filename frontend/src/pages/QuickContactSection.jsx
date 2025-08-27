@@ -123,36 +123,44 @@ const QuickContactSection = () => {
 
   return (
     <section className="relative bg-black text-white w-full overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20 2xl:max-w-screen-2xl">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold font-bebas tracking-wider uppercase">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-12 sm:py-16 lg:py-20 2xl:max-w-screen-2xl">
+        {/* Header Section */}
+        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold font-bebas tracking-wider uppercase leading-tight">
             STILL THINKING ABOUT IT?{" "}
             <span className="text-custom-red">LET'S TALK.</span>
           </h2>
-          <p className="mt-4 text-lg text-gray-300 inter">
+          <p className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg text-gray-300 inter max-w-2xl mx-auto px-4 sm:px-0">
             Whether it's a swirl, a stain, a startup studio, or your Sunday
             superbike — we're ready to help.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <div className="relative -ml-6 lg:-ml-12">
-            <img
-              src={carImage}
-              alt="Car"
-              className="w-[90%] h-auto object-cover"
-            />
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 xl:gap-16 items-center">
+          {/* Car Image Section */}
+          <div className="relative order-2 lg:order-1 -mx-4 sm:-mx-6 lg:-ml-12 lg:mx-0">
+            <div className="flex justify-center lg:justify-start">
+              <img
+                src={carImage}
+                alt="Car headlights detail"
+                className="w-full max-w-md sm:max-w-lg lg:max-w-none lg:w-[90%] h-auto object-cover"
+              />
+            </div>
           </div>
 
-          <div>
-            <h3 className="text-2xl font-bold font-bebas tracking-wider uppercase mb-6 leading-snug">
+          {/* Form Section */}
+          <div className="order-1 lg:order-2 px-4 sm:px-0">
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold font-bebas tracking-wider uppercase mb-6 sm:mb-8 leading-tight">
               DROP YOUR DETAILS. WE'LL TAKE IT
-              <br />
+              <br className="hidden sm:block" />
+              <span className="sm:hidden"> </span>
               FROM HERE.
             </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6" noValidate>
+              {/* Name Fields Row */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
                   <input
                     type="text"
@@ -160,14 +168,14 @@ const QuickContactSection = () => {
                     placeholder="Name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className={`bg-transparent inter border-b outline-none py-2 w-full ${
+                    className={`bg-transparent inter border-b outline-none py-2 sm:py-3 w-full text-sm sm:text-base placeholder-gray-400 transition-colors duration-200 ${
                       errors.name
                         ? "border-red-500"
                         : "border-gray-500 focus:border-white"
                     }`}
                   />
                   {errors.name && (
-                    <span className="text-red-400 text-sm mt-1 block">
+                    <span className="text-red-400 text-xs sm:text-sm mt-1 block">
                       {errors.name}
                     </span>
                   )}
@@ -179,20 +187,22 @@ const QuickContactSection = () => {
                     placeholder="Last Name"
                     value={formData.lastName}
                     onChange={handleInputChange}
-                    className={`bg-transparent border-b inter outline-none py-2 w-full ${
+                    className={`bg-transparent border-b inter outline-none py-2 sm:py-3 w-full text-sm sm:text-base placeholder-gray-400 transition-colors duration-200 ${
                       errors.lastName
                         ? "border-red-500"
                         : "border-gray-500 focus:border-white"
                     }`}
                   />
                   {errors.lastName && (
-                    <span className="text-red-400 text-sm mt-1 block">
+                    <span className="text-red-400 text-xs sm:text-sm mt-1 block">
                       {errors.lastName}
                     </span>
                   )}
                 </div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+              {/* Email & Phone Row */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
                   <input
                     type="email"
@@ -200,14 +210,14 @@ const QuickContactSection = () => {
                     placeholder="Email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className={`bg-transparent border-b  inter selection:outline-none py-2 w-full ${
+                    className={`bg-transparent border-b inter outline-none py-2 sm:py-3 w-full text-sm sm:text-base placeholder-gray-400 transition-colors duration-200 ${
                       errors.email
                         ? "border-red-500"
                         : "border-gray-500 focus:border-white"
                     }`}
                   />
                   {errors.email && (
-                    <span className="text-red-400 text-sm mt-1 block">
+                    <span className="text-red-400 text-xs sm:text-sm mt-1 block">
                       {errors.email}
                     </span>
                   )}
@@ -219,19 +229,21 @@ const QuickContactSection = () => {
                     placeholder="Phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className={`bg-transparent border-b inter outline-none py-2 w-full ${
+                    className={`bg-transparent border-b inter outline-none py-2 sm:py-3 w-full text-sm sm:text-base placeholder-gray-400 transition-colors duration-200 ${
                       errors.phone
                         ? "border-red-500"
                         : "border-gray-500 focus:border-white"
                     }`}
                   />
                   {errors.phone && (
-                    <span className="text-red-400 text-sm mt-1 block">
+                    <span className="text-red-400 text-xs sm:text-sm mt-1 block">
                       {errors.phone}
                     </span>
                   )}
                 </div>
               </div>
+
+              {/* Message Field */}
               <div>
                 <input
                   type="text"
@@ -239,30 +251,34 @@ const QuickContactSection = () => {
                   placeholder="Message (Optional)"
                   value={formData.message}
                   onChange={handleInputChange}
-                  className={`bg-transparent border-b inter outline-none py-2 w-full ${
+                  className={`bg-transparent border-b inter outline-none py-2 sm:py-3 w-full text-sm sm:text-base placeholder-gray-400 transition-colors duration-200 ${
                     errors.message
                       ? "border-red-500"
                       : "border-gray-500 focus:border-white"
                   }`}
                 />
                 {errors.message && (
-                  <span className="text-red-400 text-sm mt-1 block inter">
+                  <span className="text-red-400 text-xs sm:text-sm mt-1 block inter">
                     {errors.message}
                   </span>
                 )}
               </div>
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={`flex items-center inter gap-2 px-6 py-3 font-semibold transition ${
-                  isSubmitting
-                    ? "bg-gray-600 cursor-not-allowed shadow-none text-gray-300"
-                    : "bg-custom-red text-white shadow-[0_0_20px_rgba(255,0,0,0.6)] hover:shadow-[0_0_30px_rgba(255,0,0,0.8)]"
-                }`}
-              >
-                <FaPaperPlane /> {isSubmitting ? "Sending..." : "Get In Touch"}
-              </button>
+              {/* Submit Button */}
+              <div className="pt-2 sm:pt-4">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`flex items-center inter gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 font-semibold transition-all duration-300 text-sm sm:text-base w-full sm:w-auto justify-center sm:justify-start ${
+                    isSubmitting
+                      ? "bg-gray-600 cursor-not-allowed shadow-none text-gray-300"
+                      : "bg-custom-red text-white shadow-[0_0_20px_rgba(255,0,0,0.6)] hover:shadow-[0_0_30px_rgba(255,0,0,0.8)] hover:bg-red-600"
+                  }`}
+                >
+                  <FaPaperPlane className="text-sm" /> 
+                  {isSubmitting ? "Sending..." : "Get In Touch"}
+                </button>
+              </div>
             </form>
           </div>
         </div>
