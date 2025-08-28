@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo/logo.png";
 
 const tabs = [
@@ -18,11 +18,12 @@ const tabs = [
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const isHomePage = location.pathname === "/";
 
   const headerClasses = isHomePage
     ? "absolute top-0 left-0 right-0 z-50 text-white h-20 px-6 2xl:px-14 flex items-center justify-between bg-transparent"
-    : "bg-black text-white py-8 px-4 flex items-center justify-between border-b border-gray-700";
+    : "bg-black text-white px-4 flex items-center h-32 justify-between border-b border-gray-700";
 
   // Close mobile menu when clicking outside
   useEffect(() => {
@@ -51,12 +52,34 @@ const Header = () => {
     };
   }, [isMobileMenuOpen]);
 
+  // Handle scrolling to section after navigation
+  useEffect(() => {
+    // Check if there's a hash in the URL after navigation
+    if (location.pathname === "/" && location.hash) {
+      const targetId = location.hash.replace("#", "");
+      setTimeout(() => {
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100); // Small delay to ensure the page has rendered
+    }
+  }, [location]);
+
   const handleAnchorClick = (href) => {
     const targetId = href.replace("#", "");
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    
+    // If we're not on home page, navigate to home with hash
+    if (!isHomePage) {
+      navigate(`/${href}`);
+    } else {
+      // If we're already on home page, just scroll
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
+    
     setIsMobileMenuOpen(false); // Close mobile menu after navigation
   };
 
@@ -80,16 +103,12 @@ const Header = () => {
             <div key={tab.label} className="relative group">
               <div>
                 {tab.isAnchor ? (
-                  <a
-                    href={tab.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleAnchorClick(tab.href);
-                    }}
-                    className="hover:text-gray-300 transition-colors duration-200 cursor-pointer"
+                  <button
+                    onClick={() => handleAnchorClick(tab.href)}
+                    className="hover:text-gray-300 transition-colors duration-200 cursor-pointer bg-transparent border-none text-inherit"
                   >
                     {tab.label}
-                  </a>
+                  </button>
                 ) : (
                   <Link
                     to={tab.path}
@@ -167,16 +186,12 @@ const Header = () => {
           {tabs.map((tab) => (
             <div key={tab.label}>
               {tab.isAnchor ? (
-                <a
-                  href={tab.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleAnchorClick(tab.href);
-                  }}
-                  className="block py-3 px-4 text-lg hover:bg-gray-800 rounded-lg transition-colors duration-200 cursor-pointer"
+                <button
+                  onClick={() => handleAnchorClick(tab.href)}
+                  className="block py-3 px-4 text-lg hover:bg-gray-800 rounded-lg transition-colors duration-200 cursor-pointer w-full text-left bg-transparent border-none text-inherit"
                 >
                   {tab.label}
-                </a>
+                </button>
               ) : (
                 <Link
                   to={tab.path}

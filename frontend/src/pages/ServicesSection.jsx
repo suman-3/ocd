@@ -43,6 +43,30 @@ export default function ServicesSection({
       .finally(() => setLoading(false));
   }, []);
 
+  // Handle navigation with scroll to top
+  const handleNavigation = (serviceId) => {
+    // Scroll to top first
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+    
+    // Navigate after a short delay to ensure smooth scroll starts
+    setTimeout(() => {
+      navigate(`/toolbar/${serviceId}`);
+    }, 100);
+  };
+
+  // Alternative method - navigate immediately and scroll on the new page
+  const handleNavigationImmediate = (serviceId) => {
+    navigate(`/toolbar/${serviceId}`);
+    // Scroll to top immediately after navigation
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 0);
+  };
+
   // 🔹 Skeleton Loader UI
   if (loading) {
     return (
@@ -96,8 +120,10 @@ export default function ServicesSection({
               key={s.id}
               role="button"
               tabIndex={0}
-              onClick={() => navigate(`/toolbar/${s.id}`)}
-              onKeyDown={(e) => { if (e.key === 'Enter') navigate(`/toolbar/${s.id}`); }}
+              onClick={() => handleNavigationImmediate(s.id)}
+              onKeyDown={(e) => { 
+                if (e.key === 'Enter') handleNavigationImmediate(s.id); 
+              }}
               className="relative group cursor-pointer overflow-hidden rounded-md transition-all duration-500 hover:scale-105"
               style={{ height: cardHeight, maxWidth: cardWidth }}
               aria-label={s.name}
