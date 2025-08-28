@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SkeletonCard = ({ cardHeight, cardWidth }) => (
   <div
@@ -8,7 +8,7 @@ const SkeletonCard = ({ cardHeight, cardWidth }) => (
   >
     {/* Image skeleton */}
     <div className="w-full h-full bg-gradient-to-br from-gray-700 to-gray-800"></div>
-    
+
     {/* Content skeleton overlay */}
     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent">
       <div className="absolute left-6 bottom-6">
@@ -21,8 +21,8 @@ const SkeletonCard = ({ cardHeight, cardWidth }) => (
 );
 
 export default function ServicesSection({
-  cardHeight = '26rem',
-  cardWidth = undefined
+  cardHeight = "26rem",
+  cardWidth = undefined,
 }) {
   const navigate = useNavigate();
   const [services, setServices] = useState([]);
@@ -37,8 +37,8 @@ export default function ServicesSection({
         setError(null);
       })
       .catch((err) => {
-        console.error('Error fetching services:', err);
-        setError('Failed to load services. Please try again later.');
+        console.error("Error fetching services:", err);
+        setError("Failed to load services. Please try again later.");
       })
       .finally(() => setLoading(false));
   }, []);
@@ -49,9 +49,9 @@ export default function ServicesSection({
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
-    
+
     // Navigate after a short delay to ensure smooth scroll starts
     setTimeout(() => {
       navigate(`/toolbar/${serviceId}`);
@@ -110,7 +110,8 @@ export default function ServicesSection({
           <span className="text-custom-red"> It's the Standard </span>
         </h1>
         <h3 className="mt-4 text-lg text-gray-300 inter">
-          Every surface. Every curve. Every ride. We treat your machine like a masterpiece.
+          Every surface. Every curve. Every ride. We treat your machine like a
+          masterpiece.
         </h3>
 
         {/* Fixed responsive grid - removed inline styles and conflicting classes */}
@@ -121,8 +122,8 @@ export default function ServicesSection({
               role="button"
               tabIndex={0}
               onClick={() => handleNavigationImmediate(s.id)}
-              onKeyDown={(e) => { 
-                if (e.key === 'Enter') handleNavigationImmediate(s.id); 
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleNavigationImmediate(s.id);
               }}
               className="relative group cursor-pointer overflow-hidden rounded-md transition-all duration-500 hover:scale-105"
               style={{ height: cardHeight, maxWidth: cardWidth }}
@@ -147,7 +148,6 @@ export default function ServicesSection({
 
               {/* Hover Overlay - Dark background with content */}
               <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end px-4 pb-4">
-                
                 {/* Service Title */}
                 <h2 className="font-bebas text-[2rem] text-left leading-tight text-white mb-4 uppercase tracking-wider transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 delay-100">
                   {s.name}

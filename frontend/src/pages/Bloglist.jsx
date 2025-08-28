@@ -16,10 +16,46 @@ function makeExcerpt(html = "", wordCount = 14) {
   );
 }
 
-
 const API_BASE =
   import.meta.env.VITE_API_BASE || "https://ocd-deploy.onrender.com";
 const fixURL = (u) => (u ? u.replace("http://localhost:4000", API_BASE) : "");
+
+// Enhanced skeleton component
+const BlogSkeleton = () => (
+  <article className="flex flex-col sm:flex-row bg-white border border-gray-200 overflow-hidden h-auto sm:h-[310px] w-full animate-pulse">
+    {/* Image skeleton */}
+    <div className="w-full sm:w-[393px] h-[200px] sm:h-[310px] flex-shrink-0 bg-gray-300"></div>
+    
+    {/* Content skeleton */}
+    <div className="flex-1 p-4 sm:p-8 flex flex-col space-y-3">
+      {/* Tag skeleton */}
+      <div className="w-20 h-6 bg-gray-300 rounded"></div>
+      
+      {/* Title skeleton */}
+      <div className="space-y-2">
+        <div className="h-6 bg-gray-300 rounded w-3/4"></div>
+        <div className="h-6 bg-gray-300 rounded w-1/2"></div>
+      </div>
+      
+      {/* Excerpt skeleton */}
+      <div className="space-y-2">
+        <div className="h-4 bg-gray-200 rounded w-full"></div>
+        <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+        <div className="h-4 bg-gray-200 rounded w-4/6"></div>
+      </div>
+      
+      {/* Meta skeleton */}
+      <div className="mt-auto pt-4">
+        <div className="w-14 h-[1px] bg-gray-300 mb-2"></div>
+        <div className="flex items-center space-x-2">
+          <div className="w-16 h-3 bg-gray-200 rounded"></div>
+          <div className="w-1 h-1 bg-gray-200 rounded-full"></div>
+          <div className="w-20 h-3 bg-gray-200 rounded"></div>
+        </div>
+      </div>
+    </div>
+  </article>
+);
 
 export default function BlogList() {
   const [blogs, setBlogs] = useState([]);
@@ -32,7 +68,6 @@ export default function BlogList() {
     (async () => {
       setLoading(true);
       try {
-        // const list = await axios.get(`${API_BASE}/blogs?page=${page}&limit=5`);
         const list = await axios.get(`${API_BASE}/blogs?page=${page}&limit=5`);
         const items = list.data?.data || [];
         setTotalPages(list.data?.totalPages || 1);
@@ -61,129 +96,204 @@ export default function BlogList() {
     })();
   }, [page]);
 
+  // Enhanced loading state with skeleton
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-50">
-        <div className="w-12 h-12 border-4 border-red-500 border-t-transparent rounded-full animate-spin"></div>
-        <span className="ml-4 text-gray-600">Loading blogs…</span>
+      <div className="bg-white text-black min-h-screen">
+        <FloatingContactButtons />
+        
+        {/* Page header */}
+        <div className="bg-black text-white py-8 sm:py-12 text-center">
+          <div className="animate-pulse">
+            <div className="h-8 sm:h-12 bg-gray-700 rounded-md w-48 mx-auto"></div>
+          </div>
+        </div>
+
+        {/* Content + Sidebar */}
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-6 sm:py-10 grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-6 sm:gap-10 items-start">
+          {/* Blog Cards Skeleton */}
+          <div className="space-y-6 sm:space-y-12">
+            {Array.from({ length: 5 }).map((_, index) => (
+              <BlogSkeleton key={index} />
+            ))}
+          </div>
+
+          {/* Sidebar Skeleton */}
+          <aside className="lg:sticky lg:top-24 self-start">
+            <div className="animate-pulse bg-gray-200 h-96 rounded-lg"></div>
+          </aside>
+        </div>
       </div>
     );
   }
 
   if (error)
-    return <div className="py-16 text-center text-red-500">{error}</div>;
+    return (
+      <div className="bg-white min-h-screen flex items-center justify-center px-4">
+        <div className="text-center">
+          <div className="text-red-500 text-lg mb-4">{error}</div>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
 
   return (
     <div className="bg-white text-black min-h-screen">
       <FloatingContactButtons />
 
       {/* Page header */}
-      <div className="bg-black text-white py-12 text-center">
-        <h1 className="text-4xl font-bold uppercase tracking-wide">
+      <div className="bg-black text-white py-6 sm:py-12 text-center px-4">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-wide font-bebas">
           Blog List
         </h1>
       </div>
 
       {/* Content + Sidebar */}
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-10 grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-10 items-start">
+      <div className="mx-auto px-4 md:px-10 py-6 sm:py-10 grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-6 sm:gap-10 items-start">
         {/* Blog Cards */}
-        <div className="space-y-12">
-          {blogs.map((b) => (
-            <article
-              key={b.id}
-              className="flex flex-col sm:flex-row bg-white border border-gray-200 overflow-hidden h-[310px] w-full"
-            >
-              {/* Image */}
-              <div className="w-full sm:w-[393px] h-[310px] flex-shrink-0">
-                <img
-                  src={
-                    b.image1 ||
-                    "https://via.placeholder.com/600x400?text=Blog+Image"
-                  }
-                  alt={b.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+        <div className="space-y-6 sm:space-y-12">
+          {blogs.length === 0 ? (
+            <div className="text-center py-16 text-gray-600">
+              <p className="text-lg">No blogs found.</p>
+            </div>
+          ) : (
+            blogs.map((b) => (
+              <article
+                key={b.id}
+                className="flex flex-col sm:flex-row bg-white border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 h-auto sm:h-[310px] w-full"
+              >
+                {/* Image */}
+                <div className="w-full sm:w-[393px] h-[200px] sm:h-[310px] flex-shrink-0 overflow-hidden">
+                  <img
+                    src={
+                      b.image1 ||
+                      "https://via.placeholder.com/600x400?text=Blog+Image"
+                    }
+                    alt={b.name}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </div>
 
-              {/* Content */}
-              <div className="flex-1 p-8 flex flex-col">
-                {/* TAG */}
-                <span className="inline-block bg-red-600 text-white text-[12px] font-semibold px-4 py-2 rounded-md mb-3 uppercase w-fit">
-                  Body Shop
-                </span>
+                {/* Content */}
+                <div className="flex-1 p-4 sm:p-8 flex flex-col">
+                  {/* TAG */}
+                  <span className="inline-block bg-red-600 text-white text-[10px] sm:text-[12px] font-semibold px-3 sm:px-4 py-1 sm:py-2 rounded-md mb-2 sm:mb-3 uppercase w-fit">
+                    Body Shop
+                  </span>
 
-                {/* TITLE */}
-                <Link to={`/blogs/${b.id}`}>
-                  <h2 className="font-bebas text-[26px] leading-[32px] uppercase text-[#18171A] hover:text-red-600 transition mb-3">
-                    {b.name}
-                  </h2>
-                </Link>
+                  {/* TITLE */}
+                  <Link to={`/blogs/${b.id}`}>
+                    <h2 className="font-bebas text-[20px] sm:text-[26px] leading-[24px] sm:leading-[32px] uppercase text-[#18171A] hover:text-red-600 transition mb-2 sm:mb-3 line-clamp-2">
+                      {b.name}
+                    </h2>
+                  </Link>
 
-                {/* EXCERPT */}
-                <p className="text-[16px] leading-[26px] text-[#615F5C] tracking-[0.1px] mb-6">
-                  {makeExcerpt(b.rich_text1, 16)}
-                </p>
+                  {/* EXCERPT */}
+                  <p className="text-[14px] sm:text-[16px] leading-[22px] sm:leading-[26px] text-[#615F5C] tracking-[0.1px] mb-4 sm:mb-6 flex-1 line-clamp-3">
+                    {makeExcerpt(b.rich_text1, window.innerWidth < 640 ? 12 : 16)}
+                  </p>
 
-                {/* Divider + Meta */}
-                <div className="mt-auto">
-                  <div className="w-14 h-[1px] bg-[#18171A] mb-2"></div>
-                  <div className="flex items-center text-[13px] text-[#949087]">
-                    <span>
-                      {new Date(b.date).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                      })}
-                    </span>
-                    <span className="mx-3 w-[3px] h-[3px] bg-[#949087] rounded-full inline-block" />
-                    <span>
-                      {b.commentsCount ?? 0}{" "}
-                      {Number(b.commentsCount ?? 0) === 1
-                        ? "Comment"
-                        : "Comments"}
-                    </span>
+                  {/* Divider + Meta */}
+                  <div className="mt-auto">
+                    <div className="w-10 sm:w-14 h-[1px] bg-[#18171A] mb-2"></div>
+                    <div className="flex items-center text-[11px] sm:text-[13px] text-[#949087] flex-wrap gap-1 sm:gap-0">
+                      <span>
+                        {new Date(b.date).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                        })}
+                      </span>
+                      <span className="mx-2 sm:mx-3 w-[2px] sm:w-[3px] h-[2px] sm:h-[3px] bg-[#949087] rounded-full inline-block" />
+                      <span>
+                        {b.commentsCount ?? 0}{" "}
+                        {Number(b.commentsCount ?? 0) === 1
+                          ? "Comment"
+                          : "Comments"}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))
+          )}
 
-          {/* Pagination */}
-          <div className="flex justify-center items-center gap-2 pt-8">
-            <button
-              disabled={page === 1}
-              onClick={() => setPage(page - 1)}
-              className="w-[50px] h-[50px] border border-gray-300 flex items-center justify-center font-bebas text-lg disabled:opacity-40 hover:bg-black hover:text-white"
-            >
-              ←
-            </button>
-            {[...Array(totalPages)].map((_, i) => (
+          {/* Enhanced Mobile-Friendly Pagination */}
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center gap-1 sm:gap-2 pt-6 sm:pt-8 px-4">
               <button
-                key={i}
-                onClick={() => setPage(i + 1)}
-                className={`w-[50px] h-[50px] flex items-center justify-center font-bebas text-lg border ${
-                  page === i + 1
-                    ? "bg-black text-white border-black"
-                    : "border-gray-300 text-black hover:bg-black hover:text-white"
-                }`}
+                disabled={page === 1}
+                onClick={() => {
+                  setPage(page - 1);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] border border-gray-300 flex items-center justify-center font-bebas text-base sm:text-lg disabled:opacity-40 hover:bg-black hover:text-white transition-colors duration-200"
+                aria-label="Previous page"
               >
-                {i + 1}
+                ←
               </button>
-            ))}
-            <button
-              disabled={page === totalPages}
-              onClick={() => setPage(page + 1)}
-              className="w-[50px] h-[50px] border border-gray-300 flex items-center justify-center font-bebas text-lg disabled:opacity-40 hover:bg-black hover:text-white"
-            >
-              →
-            </button>
-          </div>
+              
+              {/* Mobile: Show only current page and nearby pages */}
+              <div className="flex items-center gap-1 sm:gap-2 overflow-x-auto max-w-[200px] sm:max-w-none">
+                {[...Array(totalPages)].map((_, i) => {
+                  // On mobile, show current page and 2 pages on each side
+                  const pageNumber = i + 1;
+                  const showOnMobile = window.innerWidth >= 640 || 
+                    (pageNumber >= page - 1 && pageNumber <= page + 1);
+                  
+                  if (!showOnMobile) return null;
+
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => {
+                        setPage(pageNumber);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className={`w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] flex items-center justify-center font-bebas text-base sm:text-lg border transition-colors duration-200 ${
+                        page === pageNumber
+                          ? "bg-black text-white border-black"
+                          : "border-gray-300 text-black hover:bg-black hover:text-white"
+                      }`}
+                      aria-label={`Page ${pageNumber}`}
+                      aria-current={page === pageNumber ? "page" : undefined}
+                    >
+                      {pageNumber}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <button
+                disabled={page === totalPages}
+                onClick={() => {
+                  setPage(page + 1);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] border border-gray-300 flex items-center justify-center font-bebas text-base sm:text-lg disabled:opacity-40 hover:bg-black hover:text-white transition-colors duration-200"
+                aria-label="Next page"
+              >
+                →
+              </button>
+            </div>
+          )}
         </div>
 
-        {/* Sidebar */}
-        <aside className="lg:sticky lg:top-24 self-start">
+        {/* Sidebar - Hidden on mobile, shown on lg+ */}
+        <aside className="hidden lg:block lg:sticky lg:top-24 self-start">
           <RightPanelBlog recent={blogs.slice(0, 2)} fixURL={fixURL} />
         </aside>
+      </div>
+
+      {/* Mobile Sidebar - Show at bottom on mobile */}
+      <div className="lg:hidden px-4 pb-8">
+        <RightPanelBlog recent={blogs.slice(0, 2)} fixURL={fixURL} />
       </div>
     </div>
   );

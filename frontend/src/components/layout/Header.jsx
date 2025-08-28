@@ -11,7 +11,7 @@ const tabs = [
   },
   { label: "Testimonials", href: "#testimonials", isAnchor: true },
   { label: "About Us", href: "#AboutUs", isAnchor: true },
-  { label: "Blogs", href: "#Blogs", isAnchor: true },
+  { label: "Blogs", path: "/blogs" }, // Changed: Removed isAnchor, added path
   { label: "Contact Us", href: "#ContactSection", isAnchor: true },
 ];
 
@@ -83,6 +83,16 @@ const Header = () => {
     setIsMobileMenuOpen(false); // Close mobile menu after navigation
   };
 
+  // Handle regular navigation with scroll to top
+  const handleNavigation = (path) => {
+    navigate(path);
+    // Scroll to top after navigation
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 0);
+    setIsMobileMenuOpen(false); // Close mobile menu after navigation
+  };
+
   const handleMobileMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -92,7 +102,7 @@ const Header = () => {
       <header className={headerClasses}>
         {/* Logo */}
         <div className="flex items-center mt-2 md:mt-5">
-          <Link to="/">
+          <Link to="/" onClick={() => window.scrollTo(0, 0)}>
             <img src={logo} alt="Logo" className="h-14 md:h-20 w-auto" />
           </Link>
         </div>
@@ -110,12 +120,12 @@ const Header = () => {
                     {tab.label}
                   </button>
                 ) : (
-                  <Link
-                    to={tab.path}
-                    className="hover:text-gray-300 transition-colors duration-200"
+                  <button
+                    onClick={() => handleNavigation(tab.path)}
+                    className="hover:text-gray-300 transition-colors duration-200 cursor-pointer bg-transparent border-none text-inherit"
                   >
                     {tab.label}
-                  </Link>
+                  </button>
                 )}
                 {tab.subItems && (
                   <span className="ml-1 text-xs">▼</span>
@@ -127,9 +137,12 @@ const Header = () => {
                 <div className="absolute top-full left-0 mt-2 w-48 bg-white text-black rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                   {tab.subItems.map((item) => (
                     <div key={item.label} className="p-3 hover:bg-gray-100">
-                      <Link to={item.path} className="block">
+                      <button
+                        onClick={() => handleNavigation(item.path)}
+                        className="block w-full text-left bg-transparent border-none text-inherit"
+                      >
                         {item.label.trim()}
-                      </Link>
+                      </button>
                     </div>
                   ))}
                 </div>
@@ -193,27 +206,25 @@ const Header = () => {
                   {tab.label}
                 </button>
               ) : (
-                <Link
-                  to={tab.path}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-3 px-4 text-lg hover:bg-gray-800 rounded-lg transition-colors duration-200"
+                <button
+                  onClick={() => handleNavigation(tab.path)}
+                  className="block py-3 px-4 text-lg hover:bg-gray-800 rounded-lg transition-colors duration-200 cursor-pointer w-full text-left bg-transparent border-none text-inherit"
                 >
                   {tab.label}
-                </Link>
+                </button>
               )}
 
               {/* Mobile Dropdown Items */}
               {tab.subItems && (
                 <div className="ml-4 mt-2 space-y-2">
                   {tab.subItems.map((item) => (
-                    <Link
+                    <button
                       key={item.label}
-                      to={item.path}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="block py-2 px-4 text-sm text-gray-300 hover:text-white hover:bg-gray-800 rounded-lg transition-colors duration-200"
+                      onClick={() => handleNavigation(item.path)}
+                      className="block py-2 px-4 text-sm text-gray-300 hover:text-white hover:bg-gray-800 rounded-lg transition-colors duration-200 w-full text-left bg-transparent border-none text-inherit"
                     >
                       {item.label.trim()}
-                    </Link>
+                    </button>
                   ))}
                 </div>
               )}
