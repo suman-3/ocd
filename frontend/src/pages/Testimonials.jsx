@@ -6,7 +6,7 @@ import logo from '../assets/logo/logo.png'
 
 export default function Testimonials() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 2xl:gap-10 items-stretch max-w-[1400px] 2xl:max-w-screen-2xl mx-auto  py-4 md:py-6 px-6 md:px-10 lg:px-20 2xl:px-4">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 2xl:gap-10 items-stretch max-w-[1400px] 2xl:max-w-screen-2xl mx-auto  py-4 md:py-6 px-6 md:px-9 2xl:px-4">
       {/* LEFT COLUMN */}
       <div className="flex flex-col gap-6 md:gap-8 items-stretch">
         {/* Card 1 */}
