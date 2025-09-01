@@ -506,18 +506,18 @@ const BlogDetail = () => {
           )}
 
           {/* Images grid - responsive */}
-          {(blog.image1 || blog.image2) && (
+          {(blog.image2 || blog.image3) && (
             <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 my-8 sm:my-10">
               {blog.image1 && (
                 <img
-                  src={blog.image1}
+                  src={blog.image2}
                   alt={blog.name}
                   className="w-full h-64 sm:h-80 lg:h-[430px] object-cover rounded-lg"
                 />
               )}
               {blog.image2 && (
                 <img
-                  src={blog.image2}
+                  src={blog.image3}
                   alt={blog.name}
                   className="w-full h-64 sm:h-80 lg:h-[430px] object-cover rounded-lg"
                 />

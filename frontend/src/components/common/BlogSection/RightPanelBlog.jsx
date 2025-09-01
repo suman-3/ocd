@@ -1,11 +1,42 @@
-
-
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Search } from "lucide-react";
 import logo from "../../../assets/componets-bg/logo.png"; // adjust if path differs
 
 export default function RightPanelBlog({ recent = [], fixURL = (x) => x }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Get selected tags from URL params
+  const getSelectedTags = () => {
+    const tagsParam = searchParams.get('tags');
+    return tagsParam ? tagsParam.split(',').map(tag => tag.trim()) : [];
+  };
+
+  // Handle tag click
+  const handleTagClick = (tag) => {
+    const currentTags = getSelectedTags();
+    let updatedTags;
+
+    if (currentTags.includes(tag)) {
+      // Remove tag if already selected
+      updatedTags = currentTags.filter(t => t !== tag);
+    } else {
+      // Add tag if not selected
+      updatedTags = [...currentTags, tag];
+    }
+
+    // Update URL search params
+    const newSearchParams = new URLSearchParams(searchParams);
+    if (updatedTags.length > 0) {
+      newSearchParams.set('tags', updatedTags.join(','));
+    } else {
+      newSearchParams.delete('tags');
+    }
+    setSearchParams(newSearchParams);
+  };
+
+  const selectedTags = getSelectedTags();
+
   return (
     <div className="space-y-10">
       {/* --- Search --- */}
@@ -73,18 +104,31 @@ export default function RightPanelBlog({ recent = [], fixURL = (x) => x }) {
         </h3>
         <div className="flex flex-wrap gap-2">
           {[
-            "Cars","Clean","dealer","Detailing","Drive","insurance","Leather",
-            "luxury","News","Paint","Parts","rent","Rims","sale","Soap","Tint",
-            "travel","Trends",
+            "Cars", "Clean", "dealer", "Detailing", "Drive", "insurance", "Leather",
+            "luxury", "News", "Paint", "Parts", "rent", "Rims", "sale", "Soap", "Tint",
+            "travel", "Trends",
           ].map((t) => (
             <span
               key={t}
-              className="px-2.5 py-1 text-xs border border-gray-300 rounded-sm hover:bg-black hover:text-white cursor-pointer"
+              onClick={() => handleTagClick(t)}
+              className={`px-2.5 py-1 text-xs border rounded-sm cursor-pointer transition-all duration-200 ${
+                selectedTags.includes(t)
+                  ? 'bg-black text-white border-black'
+                  : 'border-gray-300 hover:bg-black hover:text-white'
+              }`}
             >
               {t}
             </span>
           ))}
         </div>
+        
+        {/* Show selected tags count */}
+        {selectedTags.length > 0 && (
+          <div className="mt-3 text-xs text-gray-600">
+            <span className="font-medium">{selectedTags.length} tag{selectedTags.length !== 1 ? 's' : ''} selected:</span>
+            <span className="ml-1">{selectedTags.join(', ')}</span>
+          </div>
+        )}
       </section>
 
       {/* --- OCD Logo --- */}

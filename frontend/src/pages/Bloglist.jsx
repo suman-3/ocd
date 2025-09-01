@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import RightPanelBlog from "../components/common/BlogSection/RightPanelBlog";
 import FloatingContactButtons from "./FloatingContactButtons";
 
@@ -18,32 +18,31 @@ function makeExcerpt(html = "", wordCount = 14) {
 
 const API_BASE =
   import.meta.env.VITE_API_BASE || "https://ocd-deploy.onrender.com";
-const fixURL = (u) => (u ? u.replace("http://localhost:4000", API_BASE) : "");
 
 // Enhanced skeleton component
 const BlogSkeleton = () => (
   <article className="flex flex-col sm:flex-row bg-white border border-gray-200 overflow-hidden h-auto sm:h-[310px] w-full animate-pulse">
     {/* Image skeleton */}
     <div className="w-full sm:w-[393px] h-[200px] sm:h-[310px] flex-shrink-0 bg-gray-300"></div>
-    
+
     {/* Content skeleton */}
     <div className="flex-1 p-4 sm:p-8 flex flex-col space-y-3">
       {/* Tag skeleton */}
       <div className="w-20 h-6 bg-gray-300 rounded"></div>
-      
+
       {/* Title skeleton */}
       <div className="space-y-2">
         <div className="h-6 bg-gray-300 rounded w-3/4"></div>
         <div className="h-6 bg-gray-300 rounded w-1/2"></div>
       </div>
-      
+
       {/* Excerpt skeleton */}
       <div className="space-y-2">
         <div className="h-4 bg-gray-200 rounded w-full"></div>
         <div className="h-4 bg-gray-200 rounded w-5/6"></div>
         <div className="h-4 bg-gray-200 rounded w-4/6"></div>
       </div>
-      
+
       {/* Meta skeleton */}
       <div className="mt-auto pt-4">
         <div className="w-14 h-[1px] bg-gray-300 mb-2"></div>
@@ -63,12 +62,47 @@ export default function BlogList() {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Get selected tags from URL params
+  const getSelectedTags = () => {
+    const tagsParam = searchParams.get("tags");
+    return tagsParam ? tagsParam.split(",").map((tag) => tag.trim()) : [];
+  };
+
+  // Get page from URL params
+  const getPageFromUrl = () => {
+    const pageParam = searchParams.get("page");
+    return pageParam ? parseInt(pageParam, 10) : 1;
+  };
+
+  // Update page state when URL changes
+  useEffect(() => {
+    const urlPage = getPageFromUrl();
+    if (urlPage !== page) {
+      setPage(urlPage);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     (async () => {
       setLoading(true);
+      setError(null);
+
       try {
-        const list = await axios.get(`${API_BASE}/blogs?page=${page}&limit=5`);
+        const currentTags = getSelectedTags();
+        const currentPage = getPageFromUrl();
+
+        let apiUrl = `${API_BASE}/blogs?page=${currentPage}&limit=5`;
+
+        if (currentTags.length > 0) {
+          apiUrl += `&tags=${encodeURIComponent(currentTags.join(","))}`;
+        }
+
+        console.log("Fetching blogs with URL:", apiUrl);
+        console.log("Selected tags:", currentTags);
+
+        const list = await axios.get(apiUrl);
         const items = list.data?.data || [];
         setTotalPages(list.data?.totalPages || 1);
 
@@ -78,7 +112,7 @@ export default function BlogList() {
               const d = await axios.get(`${API_BASE}/blogs/${b.id}`);
               return {
                 ...b,
-                image1: fixURL(d.data?.image1),
+                image1: d.data?.image1,
                 rich_text1: d.data.rich_text1,
               };
             } catch {
@@ -89,19 +123,42 @@ export default function BlogList() {
 
         setBlogs(withImages);
       } catch (e) {
+        console.error("Error fetching blogs:", e);
         setError("Failed to fetch blogs.");
       } finally {
         setLoading(false);
       }
     })();
-  }, [page]);
+  }, [searchParams]); // Re-fetch when search params change (including both page and tags)
+
+  // Handle pagination with URL update
+  const handlePageChange = (newPage) => {
+    const newSearchParams = new URLSearchParams(searchParams);
+
+    if (newPage === 1) {
+      newSearchParams.delete("page");
+    } else {
+      newSearchParams.set("page", newPage.toString());
+    }
+
+    setSearchParams(newSearchParams);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Clear all filters
+  const clearAllFilters = () => {
+    const newSearchParams = new URLSearchParams();
+    setSearchParams(newSearchParams);
+  };
+
+  const selectedTags = getSelectedTags();
 
   // Enhanced loading state with skeleton
   if (loading) {
     return (
       <div className="bg-white text-black min-h-screen">
         <FloatingContactButtons />
-        
+
         {/* Page header */}
         <div className="bg-black text-white py-8 sm:py-12 text-center">
           <div className="animate-pulse">
@@ -132,8 +189,8 @@ export default function BlogList() {
       <div className="bg-white min-h-screen flex items-center justify-center px-4">
         <div className="text-center">
           <div className="text-red-500 text-lg mb-4">{error}</div>
-          <button 
-            onClick={() => window.location.reload()} 
+          <button
+            onClick={() => window.location.reload()}
             className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors"
           >
             Try Again
@@ -151,6 +208,26 @@ export default function BlogList() {
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-wide font-bebas">
           Blog List
         </h1>
+        {/* 
+        {selectedTags.length > 0 && (
+          <div className="mt-4 flex flex-wrap justify-center items-center gap-2">
+            <span className="text-gray-300 text-sm">Filtered by:</span>
+            {selectedTags.map((tag) => (
+              <span
+                key={tag}
+                className="bg-red-600/20 text-red-400 px-3 py-1 rounded-full text-sm flex items-center gap-2"
+              >
+                {tag}
+              </span>
+            ))}
+            <button
+              onClick={clearAllFilters}
+              className="text-gray-300 hover:text-white text-sm underline ml-2"
+            >
+              Clear all filters
+            </button>
+          </div>
+        )} */}
       </div>
 
       {/* Content + Sidebar */}
@@ -159,7 +236,21 @@ export default function BlogList() {
         <div className="space-y-6 sm:space-y-12">
           {blogs.length === 0 ? (
             <div className="text-center py-16 text-gray-600">
-              <p className="text-lg">No blogs found.</p>
+              {selectedTags.length > 0 ? (
+                <>
+                  <p className="text-lg mb-4">
+                    No blogs found for the selected tags.
+                  </p>
+                  <button
+                    onClick={clearAllFilters}
+                    className="text-red-600 hover:text-red-700 underline"
+                  >
+                    Clear filters to see all blogs
+                  </button>
+                </>
+              ) : (
+                <p className="text-lg">No blogs found.</p>
+              )}
             </div>
           ) : (
             blogs.map((b) => (
@@ -196,7 +287,10 @@ export default function BlogList() {
 
                   {/* EXCERPT */}
                   <p className="text-[14px] sm:text-[16px] leading-[22px] sm:leading-[26px] text-[#615F5C] tracking-[0.1px] mb-4 sm:mb-6 flex-1 line-clamp-3">
-                    {makeExcerpt(b.rich_text1, window.innerWidth < 640 ? 12 : 16)}
+                    {makeExcerpt(
+                      b.rich_text1,
+                      window.innerWidth < 640 ? 12 : 16
+                    )}
                   </p>
 
                   {/* Divider + Meta */}
@@ -229,33 +323,28 @@ export default function BlogList() {
             <div className="flex justify-center items-center gap-1 sm:gap-2 pt-6 sm:pt-8 px-4">
               <button
                 disabled={page === 1}
-                onClick={() => {
-                  setPage(page - 1);
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
+                onClick={() => handlePageChange(page - 1)}
                 className="w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] border border-gray-300 flex items-center justify-center font-bebas text-base sm:text-lg disabled:opacity-40 hover:bg-black hover:text-white transition-colors duration-200"
                 aria-label="Previous page"
               >
                 ←
               </button>
-              
+
               {/* Mobile: Show only current page and nearby pages */}
               <div className="flex items-center gap-1 sm:gap-2 overflow-x-auto max-w-[200px] sm:max-w-none">
                 {[...Array(totalPages)].map((_, i) => {
                   // On mobile, show current page and 2 pages on each side
                   const pageNumber = i + 1;
-                  const showOnMobile = window.innerWidth >= 640 || 
+                  const showOnMobile =
+                    window.innerWidth >= 640 ||
                     (pageNumber >= page - 1 && pageNumber <= page + 1);
-                  
+
                   if (!showOnMobile) return null;
 
                   return (
                     <button
                       key={i}
-                      onClick={() => {
-                        setPage(pageNumber);
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }}
+                      onClick={() => handlePageChange(pageNumber)}
                       className={`w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] flex items-center justify-center font-bebas text-base sm:text-lg border transition-colors duration-200 ${
                         page === pageNumber
                           ? "bg-black text-white border-black"
@@ -272,10 +361,7 @@ export default function BlogList() {
 
               <button
                 disabled={page === totalPages}
-                onClick={() => {
-                  setPage(page + 1);
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
+                onClick={() => handlePageChange(page + 1)}
                 className="w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] border border-gray-300 flex items-center justify-center font-bebas text-base sm:text-lg disabled:opacity-40 hover:bg-black hover:text-white transition-colors duration-200"
                 aria-label="Next page"
               >

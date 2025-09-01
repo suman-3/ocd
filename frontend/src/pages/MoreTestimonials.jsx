@@ -12,7 +12,7 @@ const MoreCustomersSay = () => {
         MORE <br className="md:hidden" /> CUSTOMERS SAY
       </h2>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-5 lg:gap-8 2xl:gap-10 justify-center px-4 items-stretch mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-8 2xl:gap-10 justify-center px-4 items-stretch mx-auto">
         {/* Card 1 */}
         <div className="bg-white text-black rounded-sm p-5 shadow-lg flex flex-col h-full max-w-[600px] mx-auto lg:mx-0">
           <div className="w-full flex items-center justify-between">

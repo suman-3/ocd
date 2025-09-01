@@ -82,9 +82,9 @@ const WhatWeDo = () => {
           
           {/* Shared overlay that spans full width but stays within container */}
           {hoveredCard && (
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-white/90 via-white/50 to-transparent px-4 py-8 text-center opacity-100 transition-opacity duration-300 pointer-events-none">
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-white/80 via-white/70 to-transparent px-4 py-8 text-center opacity-100 transition-opacity duration-300 pointer-events-none">
               <p
-                className="text-4xl font-bold"
+                className="text-4xl md:text-5xl font-bold mt-10"
                 style={{ fontFamily: "'Bebas Neue', cursive" }}
               >
                 SAURABH & SUMANT
