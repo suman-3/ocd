@@ -348,16 +348,13 @@ const HomePage = () => {
         <div className="whitespace-nowrap">
           <div className="inline-block animate-scroll">
             <span className="font-bebas text-5xl md:text-9xl text-white mr-10">
-              Artdeshine|CarPro|Puris
-              Jade|Koch-Chemie|Menzerna|Rupes|Kovax|Garware PPF
+             Artdeshine|CarPro|Puris Jade|Koch-Chemie|Menzerna|Rupes|Kovax|Garware PPF
             </span>
             <span className="font-bebas text-5xl md:text-9xl text-white mr-10">
-              Artdeshine|CarPro|Puris
-              Jade|Koch-Chemie|Menzerna|Rupes|Kovax|Garware PPF
+            Artdeshine|CarPro|Puris Jade|Koch-Chemie|Menzerna|Rupes|Kovax|Garware PPF
             </span>
             <span className="font-bebas text-5xl md:text-9xl text-white mr-10">
-              Artdeshine|CarPro|Puris
-              Jade|Koch-Chemie|Menzerna|Rupes|Kovax|Garware PPF
+            Artdeshine|CarPro|Puris Jade|Koch-Chemie|Menzerna|Rupes|Kovax|Garware PPF
             </span>
           </div>
         </div>
