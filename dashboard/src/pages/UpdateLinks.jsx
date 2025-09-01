@@ -36,7 +36,7 @@ export default function UpdateLinks() {
         <TextField
           label="YouTube Link 1"
           fullWidth
-          value={links.youtube_link1}
+          value={links.youtube_link2}
           name="youtube_link1"
           onChange={handleChange}
           sx={{ mb: 2 }}
@@ -44,7 +44,7 @@ export default function UpdateLinks() {
         <TextField
           label="YouTube Link 2"
           fullWidth
-          value={links.youtube_link2}
+          value={links.youtube_link3}
           name="youtube_link2"
           onChange={handleChange}
           sx={{ mb: 2 }}

@@ -1,36 +1,65 @@
 import React, { useState, useEffect } from "react";
 import left from "../assets/componets-bg/left.png";
 import right from "../assets/componets-bg/right.png";
+import { getYouTubeLinks } from "../services/api";
 
 export default function NanoGr() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [hover, setHover] = useState(false);
+  const [fade, setFade] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [youtubeLinks, setYoutubeLinks] = useState({
+    youtube_link1: "",
+    youtube_link2: ""
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Define images array inside component to access youtubeLinks state
   const images = [
     {
       src: left,
-      link: "https://youtu.be/zvqRX10mjnI?feature=shared",
+      link: youtubeLinks.youtube_link1,
       title: "Ultimate Paint Protection Guide",
     },
     {
       src: right,
-      link: "https://youtu.be/ySdni52z8Qk?feature=shared",
+      link: youtubeLinks.youtube_link2,
       title: "Bikers - Why You Need It",
     },
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [hover, setHover] = useState(false);
-  const [fade, setFade] = useState(false);
-  const [isPaused, setIsPaused] = useState(false); // To pause auto-slide on hover
+  useEffect(() => {
+    const fetchYoutubeLinks = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await getYouTubeLinks();
+        setYoutubeLinks({
+          youtube_link1: data.youtube_link1 || "",
+          youtube_link2: data.youtube_link2 || ""
+        });
+      } catch (err) {
+        setError("Failed to load YouTube links");
+        console.error("Error fetching YouTube links:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchYoutubeLinks();
+  }, []);
 
   // Auto-slide functionality
   useEffect(() => {
-    if (!isPaused) {
+    if (!isPaused && !loading) {
       const interval = setInterval(() => {
         handleNextSlide();
-      }, 4000); // Change slide every 3 seconds
+      }, 4000);
 
       return () => clearInterval(interval);
     }
-  }, [currentIndex, isPaused]);
+  }, [currentIndex, isPaused, loading]);
 
   const handleNextSlide = () => {
     setFade(true);
@@ -52,29 +81,81 @@ export default function NanoGr() {
     }
   };
 
+  const handleImageClick = (link) => {
+    if (link) {
+      window.open(link, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="flex flex-col lg:flex-row items-center justify-center px-8 md:px-10 bg-black text-white font-sans min-h-[500px] 2xl:max-w-screen-2xl mx-auto 2xl:my-6 gap-6 md:gap-10">
+        <div className="flex-1 flex flex-col items-center justify-center relative mb-8 lg:mb-0">
+          <div className="relative w-full max-w-[600px] h-[350px] bg-gray-800 rounded-lg flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-500"></div>
+          </div>
+          <div className="flex justify-center mt-2.5 gap-2">
+            <div className="w-3 h-3 rounded-full bg-gray-600"></div>
+            <div className="w-3 h-3 rounded-full bg-gray-600"></div>
+          </div>
+        </div>
+        <div className="flex-1 lg:pl-8 text-center lg:text-left">
+          <div className="h-12 bg-gray-800 rounded mb-6 animate-pulse"></div>
+          <div className="space-y-2 mb-8">
+            <div className="h-4 bg-gray-800 rounded animate-pulse"></div>
+            <div className="h-4 bg-gray-800 rounded animate-pulse"></div>
+            <div className="h-4 bg-gray-800 rounded animate-pulse"></div>
+          </div>
+          <div className="h-12 bg-gray-800 rounded w-full sm:w-[250px] animate-pulse"></div>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="flex flex-col lg:flex-row items-center justify-center px-8 md:px-10 bg-black text-white font-sans min-h-[500px] 2xl:max-w-screen-2xl mx-auto 2xl:my-6 gap-6 md:gap-10">
+        <div className="flex-1 flex flex-col items-center justify-center relative mb-8 lg:mb-0">
+          <div className="relative w-full max-w-[600px] h-[350px] bg-red-900/20 border border-red-500 rounded-lg flex items-center justify-center">
+            <p className="text-red-400">Failed to load content</p>
+          </div>
+        </div>
+        <div className="flex-1 lg:pl-8 text-center lg:text-left">
+          <h1 className="font-bebas text-4xl sm:text-5xl font-normal leading-tight lg:leading-none tracking-normal uppercase mb-6 text-red-400">
+            Error Loading Content
+          </h1>
+          <p className="text-base leading-relaxed mb-8 inter max-w-prose">
+            {error}. Please try refreshing the page.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center px-8 md:px-10 bg-black text-white font-sans min-h-[500px] 2xl:max-w-screen-2xl mx-auto 2xl:my-6 gap-6 md:gap-10">
       {/* Left Side - Image Carousel */}
       <div
         className="flex-1 flex flex-col items-center justify-center relative mb-8 lg:mb-0"
-        onMouseEnter={() => setIsPaused(true)} // Pause auto-slide on hover
-        onMouseLeave={() => setIsPaused(false)} // Resume auto-slide when not hovering
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
       >
         <div className="relative w-full max-w-[600px] h-[350px] overflow-hidden">
-          <a
-            href={images[currentIndex].link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block w-full h-full"
+          <div
+            className="block w-full h-full cursor-pointer"
+            onClick={() => handleImageClick(images[currentIndex].link)}
           >
             <img
-              className={`w-full h-full object-cover rounded-lg cursor-pointer transition-opacity duration-300 ease-in-out ${
+              className={`w-full h-full object-cover rounded-lg transition-opacity duration-300 ease-in-out ${
                 fade ? "opacity-0" : "opacity-100"
               }`}
               src={images[currentIndex].src}
               alt={images[currentIndex].title}
+              loading="lazy"
             />
-          </a>
+          </div>
         </div>
 
         {/* Dots Container */}
@@ -86,6 +167,7 @@ export default function NanoGr() {
                 currentIndex === index ? "bg-red-500" : "bg-white"
               }`}
               onClick={() => handleDotClick(index)}
+              aria-label={`Go to slide ${index + 1}`}
             ></div>
           ))}
         </div>
@@ -122,7 +204,8 @@ export default function NanoGr() {
           onClick={() =>
             window.open(
               "https://youtube.com/@ocddetailstudiogurgaon?si=Hm-ktnUTAi_wpR5C",
-              "_blank"
+              "_blank",
+              "noopener,noreferrer"
             )
           }
           className={`inter py-3 px-6 border-none rounded-lg text-base cursor-pointer w-full sm:w-[250px] text-center font-medium transition-all duration-300 ease-in-out ${

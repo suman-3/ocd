@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import thumbnail from "../assets/background/thumbnail.png";
 import carousel from "../assets/componets-bg/carousel.png";
 import carwash from "../assets/componets-bg/carwash.png";
@@ -30,35 +30,29 @@ import FloatingContactButtons from "./FloatingContactButtons";
 import ServicesSection from "./ServicesSection";
 import NanoGr from "./NanoGr";
 import Blogs from "./Blogs";
+import { getYouTubeLinks } from "../services/api";
 
 const HomePage = () => {
-  // Function to extract YouTube video ID from URL
+  const [links, setLinks] = useState({ youtube_link1: '', youtube_link2: '', youtube_link3: '' });
 
-  const getYouTubeVideoId = (url) => {
-    if (!url) return null;
-
-    const regex =
-      /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/;
-    const match = url.match(regex);
-    return match ? match[1] : null;
-  };
-
-  // Function to get YouTube thumbnail URL
-  const getYouTubeThumbnail = (videoUrl) => {
-    const videoId = getYouTubeVideoId(videoUrl);
-    return videoId
-      ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
-      : null;
-  };
+  useEffect(() => {
+    async function fetchLinks() {
+      const data = await getYouTubeLinks();
+      setLinks(data);
+    }
+    fetchLinks();
+  }, []);
 
   // Function to render video thumbnail with fallback
   const renderVideoThumbnail = (youtubeUrl = null) => {
-    const youtubeThumbnail = getYouTubeThumbnail(youtubeUrl);
-    const thumbnailSrc = youtubeThumbnail || thumbnail;
+    // Use the default thumbnail image for display
+    const thumbnailSrc = thumbnail;
+    // Use the YouTube link from API for opening the video
+    const videoUrl = youtubeUrl || links.youtube_link1;
 
     const handleVideoClick = () => {
-      if (youtubeUrl) {
-        window.open(youtubeUrl, "_blank");
+      if (videoUrl) {
+        window.open(videoUrl, "_blank", "noopener,noreferrer");
       }
     };
 
@@ -68,10 +62,6 @@ const HomePage = () => {
           src={thumbnailSrc}
           alt="Video Thumbnail"
           className="w-full h-full object-cover rounded-lg shadow-lg transition-transform group-hover:scale-105"
-          onError={(e) => {
-            // Fallback to default thumbnail if YouTube thumbnail fails to load
-            e.target.src = thumbnail;
-          }}
         />
         {/* Play button overlay */}
         <div className="absolute inset-0 flex items-center justify-center">
@@ -120,7 +110,7 @@ const HomePage = () => {
 
           <div>
             <p
-              className="font-medium text-md md:text-lg 2xl:text-xl text-center mt-4 xl:mt-3 inter w-[90%] md:w-full mx-auto"
+              className="font-medium text-sm md:text-lg 2xl:text-xl text-center mt-4 xl:mt-3 inter w-[90%] md:w-full mx-auto"
               style={{ color: "#FFFFFF" }}
             >
               Premium PPF, ceramic and graphene coatings for your ride. Handled
@@ -148,14 +138,15 @@ const HomePage = () => {
 
       <section className="relative bg-black py-0 md:py-32">
         {/* Video positioned to overlap between sections */}
-        <div className="absolute -top-10 md:-top-14 left-1/2 transform -translate-x-1/2 z-30">
+        <div className="absolute -top-20 md:-top-14 left-1/2 transform -translate-x-1/2 z-30">
           <div className="w-[90vw] max-w-[900px] aspect-video">
-            {renderVideoThumbnail(null)}
+            {renderVideoThumbnail()}
           </div>
         </div>
       </section>
 
-      <section id="ServicesSection">
+      {/* Rest of your existing code remains the same... */}
+      <section id="ServicesSection" className="mt-2 md:mt-6">
         <ServicesSection columns={4} cardHeight="28rem" cardWidth="420px" />
       </section>
 
@@ -163,7 +154,9 @@ const HomePage = () => {
         <div className="flex flex-col md:flex-row items-center justify-between  gap-8 md:gap-10">
           <div className="flex flex-col gap-4 h-full">
             <h1 className="md:pt-14 2xl:pt-20 text-app-white">
-              <span className="text-5xl md:text-7xl font-bebas">Premium Detailing</span>
+              <span className="text-5xl md:text-7xl font-bebas">
+                Premium Detailing
+              </span>
               <br />
               <span className="text-custom-red text-5xl font-bebas">
                 For Cars & Bikes.
@@ -176,11 +169,11 @@ const HomePage = () => {
             <p className="inter 2xl:text-lg">
               At OCD Detail Studio, detailing is an obsession. <br />
               Every vehicle that enters our studio gets a personalized <br />
-              assessment and a bespoke care plan. No “standard packages.” No
+              assessment and a bespoke care plan. No "standard packages." No
               <br /> shortcuts.
               <br /> <br />
               <p className="font-bold 2xl:text-lg">
-                Whether it’s a supercar, a luxury sedan, or a superbike
+                Whether it's a supercar, a luxury sedan, or a superbike
               </p>{" "}
               from your daily driver to your weekend warrior, we treat every
               vehicle like <br />
@@ -208,7 +201,7 @@ const HomePage = () => {
                   fontStyle: "normal",
                   lineHeight: "25px",
                   letterSpacing: "0%",
-                  fontSize: "20px", // increased size
+                  fontSize: "20px",
                 }}
               >
                 SPEAK WITH THE FOUNDERS DIRECTLY
@@ -355,16 +348,16 @@ const HomePage = () => {
         <div className="whitespace-nowrap">
           <div className="inline-block animate-scroll">
             <span className="font-bebas text-5xl md:text-9xl text-white mr-10">
-              New Car & Bike Feel. Every Day Drive. Premium Detailing. Zero
-              Compromise. OCD Detail Studio – Mumbai | Gurgaon | Thane.
+              Artdeshine|CarPro|Puris
+              Jade|Koch-Chemie|Menzerna|Rupes|Kovax|Garware PPF
             </span>
             <span className="font-bebas text-5xl md:text-9xl text-white mr-10">
-              New Car & Bike Feel. Every Day Drive. Premium Detailing. Zero
-              Compromise. OCD Detail Studio – Mumbai | Gurgaon | Thane.
+              Artdeshine|CarPro|Puris
+              Jade|Koch-Chemie|Menzerna|Rupes|Kovax|Garware PPF
             </span>
             <span className="font-bebas text-5xl md:text-9xl text-white mr-10">
-              New Car & Bike Feel. Every Day Drive. Premium Detailing. Zero
-              Compromise. OCD Detail Studio – Mumbai | Gurgaon | Thane.
+              Artdeshine|CarPro|Puris
+              Jade|Koch-Chemie|Menzerna|Rupes|Kovax|Garware PPF
             </span>
           </div>
         </div>
@@ -372,7 +365,10 @@ const HomePage = () => {
       <section id="AboutUs">
         <AboutPage />
       </section>
-      <section id="ContactSection" className="bg-gray-100 py-10 md:py-16 w-full">
+      <section
+        id="ContactSection"
+        className="bg-gray-100 py-10 md:py-16 w-full"
+      >
         <ContactSection />
       </section>
 
