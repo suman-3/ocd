@@ -4,6 +4,19 @@ import { Link, useSearchParams } from "react-router-dom";
 import RightPanelBlog from "../components/common/BlogSection/RightPanelBlog";
 import FloatingContactButtons from "./FloatingContactButtons";
 
+//  name: "",
+//     minute_read: 5,
+//     date: new Date().toISOString().split("T")[0],
+//     rich_text1: "",
+//     image1: "",
+//     image2: "",
+//     image3: "",
+//     rich_text2: "",
+//     video: "",
+//     tags: [],
+//     rich_text3: "",
+//     conclusion: "",
+
 function makeExcerpt(html = "", wordCount = 14) {
   const text = html
     .replace(/<[^>]*>/g, " ")
@@ -76,11 +89,11 @@ export default function BlogList() {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 640);
     };
-    
+
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   // Get selected tags from URL params
@@ -123,7 +136,7 @@ export default function BlogList() {
 
         const list = await axios.get(apiUrl);
         const items = list.data?.data || [];
-        
+
         // Fix: Use 'pages' instead of 'totalPages' based on your API response
         setTotalPages(list.data?.pages || 1);
 
@@ -137,10 +150,10 @@ export default function BlogList() {
                 rich_text1: d.data?.rich_text1,
               };
             } catch {
-              return { 
-                ...b, 
+              return {
+                ...b,
                 image1: b.image1 || "", // Use the image from the list if detail fetch fails
-                rich_text1: "" 
+                rich_text1: "",
               };
             }
           })
@@ -292,10 +305,7 @@ export default function BlogList() {
 
                   {/* EXCERPT */}
                   <p className="text-[14px] sm:text-[16px] leading-[22px] sm:leading-[26px] text-[#615F5C] tracking-[0.1px] mb-4 sm:mb-6 flex-1 line-clamp-3">
-                    {makeExcerpt(
-                      b.rich_text1,
-                      isMobile ? 12 : 16
-                    )}
+                    {makeExcerpt(b.rich_text1, isMobile ? 12 : 16)}
                   </p>
 
                   {/* Divider + Meta */}
@@ -310,9 +320,7 @@ export default function BlogList() {
                         })}
                       </span>
                       <span className="mx-2 sm:mx-3 w-[2px] sm:w-[3px] h-[2px] sm:h-[3px] bg-[#949087] rounded-full inline-block" />
-                      <span>
-                        {b.minute_read || 0} min read
-                      </span>
+                      <span>{b.minute_read || 0} min read</span>
                     </div>
                   </div>
                 </div>

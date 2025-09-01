@@ -62,6 +62,20 @@ const Toolbar = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Helper function to check if media is a video
+  const isVideo = (mediaUrl) => {
+    if (!mediaUrl) return false;
+    const videoExtensions = ['.mp4', '.webm', '.ogg', '.avi', '.mov', '.wmv', '.flv', '.mkv'];
+    return videoExtensions.some(ext => mediaUrl.toLowerCase().includes(ext));
+  };
+
+  // Helper function to check if media is an image
+  const isImage = (mediaUrl) => {
+    if (!mediaUrl) return false;
+    const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp', '.svg'];
+    return imageExtensions.some(ext => mediaUrl.toLowerCase().includes(ext));
+  };
+
   useEffect(() => {
     setLoading(true);
     setError(null);
@@ -136,20 +150,32 @@ const Toolbar = () => {
         <div className="flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-8">
           {/* Left Content */}
           <div className="flex-1 space-y-6 lg:space-y-8">
-            {/* Media 1 */}
+            {/* Media 1 - Dynamic rendering based on file type */}
             {service.media1 && (
               <div className="w-full">
-                <video
-                  src={service.media1}
-                  controls
-                  autoPlay
-                  playsInline
-                  className="w-full rounded-lg shadow-lg aspect-video object-cover"
-                  onError={(e) => {
-                    console.error("Video failed to load:", e);
-                    e.target.style.display = "none";
-                  }}
-                />
+                {isVideo(service.media1) ? (
+                  <video
+                    src={service.media1}
+                    controls
+                    autoPlay
+                    playsInline
+                    className="w-full rounded-lg shadow-lg aspect-video object-cover"
+                    onError={(e) => {
+                      console.error("Video failed to load:", e);
+                      e.target.style.display = "none";
+                    }}
+                  />
+                ) : (
+                  <img
+                    src={service.media1}
+                    alt={service.name || "Service media"}
+                    className="w-full rounded-lg shadow-lg object-cover"
+                    onError={(e) => {
+                      console.error("Image failed to load:", e);
+                      e.target.style.display = "none";
+                    }}
+                  />
+                )}
               </div>
             )}
 
@@ -171,19 +197,31 @@ const Toolbar = () => {
               </div>
             )}
 
-            {/* Media 2 */}
+            {/* Media 2 - Dynamic rendering based on file type */}
             {service.media2 && (
               <div className="w-full">
-                <video
-                  src={service.media2}
-                  controls
-                  playsInline
-                  className="w-full rounded-lg shadow-lg aspect-video object-cover"
-                  onError={(e) => {
-                    console.error("Video failed to load:", e);
-                    e.target.style.display = "none";
-                  }}
-                />
+                {isVideo(service.media2) ? (
+                  <video
+                    src={service.media2}
+                    controls
+                    playsInline
+                    className="w-full rounded-lg shadow-lg aspect-video object-cover"
+                    onError={(e) => {
+                      console.error("Video failed to load:", e);
+                      e.target.style.display = "none";
+                    }}
+                  />
+                ) : (
+                  <img
+                    src={service.media2}
+                    alt={service.name || "Service media"}
+                    className="w-full rounded-lg shadow-lg object-cover"
+                    onError={(e) => {
+                      console.error("Image failed to load:", e);
+                      e.target.style.display = "none";
+                    }}
+                  />
+                )}
               </div>
             )}
           </div>
