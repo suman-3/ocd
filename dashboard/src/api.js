@@ -1,35 +1,35 @@
-import axios from 'axios';
+import axios from "axios";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000',
+  baseURL: import.meta.env.VITE_API_BASE_URL,
 });
 
 // attach token if present
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
 
 // --- Auth ---
 export async function login(email, password) {
-  const { data } = await api.post('/auth/login', { email, password });
+  const { data } = await api.post("/auth/login", { email, password });
   return data; // { access_token }
 }
 
 // --- Upload ---
 export async function uploadFile(file) {
   const form = new FormData();
-  form.append('file', file);
-  const { data } = await api.post('/uploads', form, {
-    headers: { 'Content-Type': 'multipart/form-data' },
+  form.append("file", file);
+  const { data } = await api.post("/uploads", form, {
+    headers: { "Content-Type": "multipart/form-data" },
   });
   return data.url;
 }
 
 // --- Services ---
 export async function listServices() {
-  const { data } = await api.get('/services');
+  const { data } = await api.get("/services");
   return data;
 }
 
@@ -39,7 +39,7 @@ export async function getService(id) {
 }
 
 export async function createService(payload) {
-  const { data } = await api.post('/services', payload);
+  const { data } = await api.post("/services", payload);
   return data;
 }
 
@@ -65,7 +65,7 @@ export async function getBlog(id) {
 }
 
 export async function createBlog(payload) {
-  const { data } = await api.post('/blogs', payload);
+  const { data } = await api.post("/blogs", payload);
   return data;
 }
 
@@ -81,14 +81,13 @@ export async function deleteBlog(id) {
 
 // YouTube Links API
 export async function getYouTubeLinks() {
-  const { data } = await api.get('/api/youtube-links');
+  const { data } = await api.get("/api/youtube-links");
   return data;
 }
 
 export async function updateYouTubeLinks(links) {
-  const { data } = await api.put('/api/youtube-links', links);
+  const { data } = await api.put("/api/youtube-links", links);
   return data;
 }
-
 
 export default api;

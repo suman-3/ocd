@@ -16,6 +16,12 @@ function makeExcerpt(html = "", wordCount = 14) {
   );
 }
 
+// Add this helper function for URL fixing
+const fixURL = (url) => {
+  if (!url) return "";
+  return url.startsWith("http") ? url : `${API_BASE}${url}`;
+};
+
 const API_BASE =
   import.meta.env.VITE_API_BASE || "https://ocd-deploy.onrender.com";
 
@@ -63,6 +69,19 @@ export default function BlogList() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Handle responsive behavior
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Get selected tags from URL params
   const getSelectedTags = () => {
@@ -104,7 +123,9 @@ export default function BlogList() {
 
         const list = await axios.get(apiUrl);
         const items = list.data?.data || [];
-        setTotalPages(list.data?.totalPages || 1);
+        
+        // Fix: Use 'pages' instead of 'totalPages' based on your API response
+        setTotalPages(list.data?.pages || 1);
 
         const withImages = await Promise.all(
           items.map(async (b) => {
@@ -113,10 +134,14 @@ export default function BlogList() {
               return {
                 ...b,
                 image1: d.data?.image1,
-                rich_text1: d.data.rich_text1,
+                rich_text1: d.data?.rich_text1,
               };
             } catch {
-              return { ...b, image1: "" };
+              return { 
+                ...b, 
+                image1: b.image1 || "", // Use the image from the list if detail fetch fails
+                rich_text1: "" 
+              };
             }
           })
         );
@@ -129,7 +154,7 @@ export default function BlogList() {
         setLoading(false);
       }
     })();
-  }, [searchParams]); // Re-fetch when search params change (including both page and tags)
+  }, [searchParams]);
 
   // Handle pagination with URL update
   const handlePageChange = (newPage) => {
@@ -208,26 +233,6 @@ export default function BlogList() {
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-wide font-bebas">
           Blog List
         </h1>
-        {/* 
-        {selectedTags.length > 0 && (
-          <div className="mt-4 flex flex-wrap justify-center items-center gap-2">
-            <span className="text-gray-300 text-sm">Filtered by:</span>
-            {selectedTags.map((tag) => (
-              <span
-                key={tag}
-                className="bg-red-600/20 text-red-400 px-3 py-1 rounded-full text-sm flex items-center gap-2"
-              >
-                {tag}
-              </span>
-            ))}
-            <button
-              onClick={clearAllFilters}
-              className="text-gray-300 hover:text-white text-sm underline ml-2"
-            >
-              Clear all filters
-            </button>
-          </div>
-        )} */}
       </div>
 
       {/* Content + Sidebar */}
@@ -262,7 +267,7 @@ export default function BlogList() {
                 <div className="w-full sm:w-[393px] h-[200px] sm:h-[310px] flex-shrink-0 overflow-hidden">
                   <img
                     src={
-                      b.image1 ||
+                      fixURL(b.image1) ||
                       "https://via.placeholder.com/600x400?text=Blog+Image"
                     }
                     alt={b.name}
@@ -289,7 +294,7 @@ export default function BlogList() {
                   <p className="text-[14px] sm:text-[16px] leading-[22px] sm:leading-[26px] text-[#615F5C] tracking-[0.1px] mb-4 sm:mb-6 flex-1 line-clamp-3">
                     {makeExcerpt(
                       b.rich_text1,
-                      window.innerWidth < 640 ? 12 : 16
+                      isMobile ? 12 : 16
                     )}
                   </p>
 
@@ -306,10 +311,7 @@ export default function BlogList() {
                       </span>
                       <span className="mx-2 sm:mx-3 w-[2px] sm:w-[3px] h-[2px] sm:h-[3px] bg-[#949087] rounded-full inline-block" />
                       <span>
-                        {b.commentsCount ?? 0}{" "}
-                        {Number(b.commentsCount ?? 0) === 1
-                          ? "Comment"
-                          : "Comments"}
+                        {b.minute_read || 0} min read
                       </span>
                     </div>
                   </div>
@@ -336,7 +338,7 @@ export default function BlogList() {
                   // On mobile, show current page and 2 pages on each side
                   const pageNumber = i + 1;
                   const showOnMobile =
-                    window.innerWidth >= 640 ||
+                    !isMobile ||
                     (pageNumber >= page - 1 && pageNumber <= page + 1);
 
                   if (!showOnMobile) return null;
